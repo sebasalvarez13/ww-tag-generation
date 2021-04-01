@@ -13,7 +13,7 @@ import pandas as pd
 from combine_csv import MergedDataFrame
 from module_signals import WeigherModule
 from ltdiscrete import LTDiscrete
-from vfd_faults import VFDFaults
+from vfd_discrete import VFDDiscrete
 
 
 #from LTPackage.level_transmitter_integer import LevelTransmitterInteger
@@ -71,8 +71,12 @@ def AppendTags():
     df_merged = MergedDataFrame.merge()
     df_merged.to_csv( "merged.csv")
     
-
     return render_template("output.html")
+
+#@app.route("/DisplayTags", methods = ["GET", "POST"])
+#def DisplayTags():
+#    tag_display.tagdisplay()
+#    return render_template("outputtable.html")    
 
 @app.route("/about", methods=["GET", "POST"])
 def about():
