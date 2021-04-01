@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <script type = "text/javascript" src = "{{url_for("static", filename = "websiteTabs.js")}}"></script>
+    <meta charset="utf-8">
+    <link rel = "stylesheet" href = "static/websiteTabs.css" type = "text/css"></link>
+  </head>
+  <body>
+    <div class="tab">
+      <button class="tablinks"
+      onclick="openCity(event, 'Level Transmitters')">Level Transmitters</button>
+      <button class="tablinks"
+      onclick="openCity(event, 'WM Signals')">WM Signals</button>
+      <button class="tablinks"
+      onclick="openCity(event, 'Tokyo')">Tokyo</button>
+    </div>
+    <center>
+      <font color="black" size="4" style="font-family: avenir">
+      <h1 style="color: DodgerBlue">Tags Created!</h1>
+      <!--p style = "color: black">Would you like to crate more tags?</p-->
+      <body bgcolor="white">
+        <button type="submit" href = "/outputtable.html" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">SEE TAGS</button>  
+        <button type="button" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;"
+        onclick = "createMoreTags()">CREATE MORE TAGS</button>
+        <script>
+          function createMoreTags(){
+            window.history.back()
+          }
+        </script>
+    <center>
+
+
+  </body>
+</html>
