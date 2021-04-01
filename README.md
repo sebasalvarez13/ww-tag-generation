@@ -11,6 +11,7 @@ This project is to automate the generation of tags for Intouch HMI applications.
 	
 ## Technologies
 Project is created with:
+* Flask
 * Python version: 3.8.5
 * HTML 
 * CSS
