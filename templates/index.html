@@ -35,7 +35,7 @@
     <button class="tablinks"
   onclick="openCity(event, 'tab2')">WM Signals</button>
     <button class="tablinks"
-  onclick="openCity(event, 'tab3')">VFD Faults</button>
+  onclick="openCity(event, 'tab3')">VFD Discrete</button>
     <button class="tablinks"
   onclick="openCity(event, 'tab4')">Append CSV Files</button>
   </div>
@@ -84,16 +84,15 @@
   </div>
 
   <div id="tab3" class="tabcontent">
-    <h3>VFD Faults</h3>
-    <p>Fault Disconnect, Fault Communication, Fault Device, Fault Ready and Fault FailedForward</p>
+    <h3>VFD Discrete Tags</h3>
+    <p>Disconnect, Fault Disconnect, Fault Communication, Fault Device, Fault Ready and Fault FailedForward</p>
     <center>
     	<font color="black" size="4" style="font-family: avenir">
-    		<h1 style="color: DodgerBlue">VFD Fault Tags</h1>
+    		<h1 style="color: DodgerBlue">VFD Discrete Tags</h1>
     		<!--body bgcolor="white"-->
-    			<form action="/VFDFaultTags" autocomplete="on" method = "POST" enctype="multipart/form-data">
+    			<form action="/VFDDiscreteTags" autocomplete="on" method = "POST" enctype="multipart/form-data">
     		  		First VFD:<br> <input type="number" name="first_vfd" ><br><br>
     		  		Last VFD:<br> <input type="number" name="last_vfd" ><br><br>
-    		  		<!--Transmitter Number:<br> <input type="number" name="transmitter_number" ><br><br>-->
     		  		Conveyor Type:<br> <input type="text" name="conveyor_type"><br><br>
     		  		Line:<br> <input type="text" name="line"><br><br>
 
