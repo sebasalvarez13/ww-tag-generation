@@ -54,14 +54,14 @@ def AddModuleTags():
 
     return render_template('index.html')
 
-@app.route("/VFDFaultTags", methods=['GET', 'POST'])
-def AddVFDFaultTags():
+@app.route("/VFDDiscreteTags", methods=['GET', 'POST'])
+def AddVFDDiscreteTags():
     first_vfd = request.form["first_vfd"]
     last_vfd = request.form["last_vfd"]
     conveyor_type = request.form["conveyor_type"]
     line = request.form["line"]
 
-    vfd = VFDFaults(int(first_vfd), int(last_vfd), conveyor_type, line)
+    vfd = VFDDiscrete(int(first_vfd), int(last_vfd), conveyor_type, line)
     vfd.create_csv()
 
     return render_template('index.html')
