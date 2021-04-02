@@ -13,6 +13,7 @@ import pandas as pd
 from combine_csv import MergedDataFrame
 from module_signals import WeigherModule
 from ltdiscrete import LTDiscrete
+from lsdiscrete import LSDiscrete
 from vfd_discrete import VFDDiscrete
 from tags_display import tagdisplay
 
@@ -44,6 +45,19 @@ def AddLevelTransTags():
 
     return render_template('index.html')
 
+@app.route("/LSTags", methods=['GET', 'POST'])
+def AddLevelSensorTags():
+    first_sensor = request.form["first_sensor"]
+    last_sensor = request.form["last_sensor"]
+    sensor_number = request.form["sensor_number"]
+    conveyor_type = request.form["conveyor_type"]
+    line = request.form["line"]
+
+    lsd = LSDiscrete(int(first_sensor), int(last_sensor), int(sensor_number), conveyor_type, line)
+    lsd.create_csv()
+
+    return render_template('index.html')
+
 @app.route("/WMTags", methods=['GET', 'POST'])
 def AddModuleTags():
     first_module = request.form["first_module"]
@@ -69,7 +83,7 @@ def AddVFDDiscreteTags():
 @app.route("/AppendTags", methods = ["GET", "POST"])
 def AppendTags():
     df_merged = MergedDataFrame.merge()
-    df_merged.to_csv( "merged.csv")
+    df_merged.to_csv( "csv-files/merged.csv")
     
     return render_template("output.html")
 
