@@ -14,7 +14,7 @@ from combine_csv import MergedDataFrame
 from module_signals import WeigherModule
 from ltdiscrete import LTDiscrete
 from vfd_discrete import VFDDiscrete
-
+from tags_display import tagdisplay
 
 #from LTPackage.level_transmitter_integer import LevelTransmitterInteger
 #from LTPackage.level_transmitter_real import LevelTransmitterReal
@@ -73,10 +73,10 @@ def AppendTags():
     
     return render_template("output.html")
 
-#@app.route("/DisplayTags", methods = ["GET", "POST"])
-#def DisplayTags():
-#    tag_display.tagdisplay()
-#    return render_template("outputtable.html")    
+@app.route("/DisplayTags", methods = ["GET", "POST"])
+def DisplayTags():
+    tagdisplay()
+    return render_template("tagstable.html")    
 
 @app.route("/about", methods=["GET", "POST"])
 def about():
