@@ -83,7 +83,7 @@ def AddVFDDiscreteTags():
 @app.route("/AppendTags", methods = ["GET", "POST"])
 def AppendTags():
     df_merged = MergedDataFrame.merge()
-    df_merged.to_csv( "csv-files/merged.csv")
+    df_merged.to_csv( "csv-files/merged.csv", index = False, encoding = "utf-8-sig")
     
     return render_template("output.html")
 
