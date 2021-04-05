@@ -10,11 +10,24 @@
   input{
     background-color: rgb(207, 228, 245);
     height: 25px;
+    width: 200px;
     font-size: 14pt;
     color: rgb(0, 26, 172);
     display: inline-flex;
     flex-direction: column;
     margin-top: 10px;
+  }
+  select{
+    background-color: rgb(207, 228, 245);
+    height: 25px;
+    width: 200px;
+    font-size: 14pt;
+    color: rgb(0, 26, 172);
+    display: inline-flex;
+    flex-direction: column;
+    margin-top: 10px;
+   
+
   }
   head{
     background-color: rgb(173, 230, 195);
@@ -22,6 +35,7 @@
   body{
     background-color: rgb(255, 255, 255);
   }
+
 </style>
 <center>
   <h1 style="color: DodgerBlue">Tag Generator</h1>
@@ -50,11 +64,27 @@
     	<font color="black" size="4" style="font-family: avenir">
     		<h1 style="color: DodgerBlue">Level Transmitter Tags</h1>
     		<!--body bgcolor="white"-->
-    			<form action="/LTTags" autocomplete="on" method = "POST" enctype="multipart/form-data">
+    			<form action="/LTTags" autocomplete="off" method = "POST" enctype="multipart/form-data">
     		  		First Transmitter:<br> <input type="number" name="first_transmitter" ><br><br>
     		  		Last Transmitter:<br> <input type="number" name="last_transmitter" ><br><br>
     		  		Transmitter Number:<br> <input type="number" name="transmitter_number" ><br><br>
-    		  		Conveyor Type:<br> <input type="text" name="conveyor_type"><br><br>
+
+    		  		Conveyor Type:<br>
+              <label for="conveyors"></label> 
+              <!--input type="text" name="conveyor_type"><br><br-->
+              <!--input list="conveyors" name="conveyor_type"><br><br-->
+              <!--div class="custom-select" style="width:200px;"-->
+                <select name="conveyor_type">
+                  <option value="Accumulation">Accumulation</option>
+                  <option value="Transfer">Transfer</option>
+                  <option value="Distribution">Distribution</option>
+                  <option value="Weigher Feeder">Weigher Feeder</option>
+                  <option value="Modulation">Modulation</option>
+                </select>
+
+              <!--/div-->
+              <br><br>
+
     		  		Line:<br> <input type="text" name="line"><br><br>
 
     		  		<button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
