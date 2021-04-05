@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import glob
 import pandas as pd
@@ -14,19 +16,25 @@ class MergedDataFrame():
         df_from_each_file = ()
 
         for f in glob.glob("/mnt/c/Projects/ww-tag-generation/csv-files/*.csv"):
-            filenames.append(f)
+            if f != "/mnt/c/Projects/ww-tag-generation/csv-files/merged.csv":
+                filenames.append(f)
         
-        if f in filenames is "merged.csv":
-            filenames.remove("merged.csv")
-        #print(filenames)
+        #if f in filenames == "merged.csv":
+         #   filenames.remove("merged.csv")
+
 
         #print(type(df_from_each_file))
         #print(df_from_each_file)    
 
-
+        df_list = []
         #filenames = [i for i in glob.glob(f"*{file_extension}")]
-        df_from_each_file = (pd.read_csv(f, sep=',') for f in filenames)
-        df_merged = pd.concat(df_from_each_file, ignore_index=False)
+        #df_from_each_file = (pd.read_csv(f, sep=',') for f in filenames)
+        for f in filenames:
+            df_from_each_file = (pd.read_csv(f, sep=','))
+            df_list.append((df_from_each_file))
+
+        print(df_list)
+        df_merged = pd.concat(df_list, ignore_index=False)
         #print(df_merged)
         #print(df_merged.drop(df_merged.columns[3], axis = 1))
 
