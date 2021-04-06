@@ -16,6 +16,7 @@ from ltdiscrete import LTDiscrete
 from lsdiscrete import LSDiscrete
 from vfd_discrete import VFDDiscrete
 from slidegates import SlideGate
+from pafa_discrete import PAFADiscrete
 from tags_display import tagdisplay
 
 #from LTPackage.level_transmitter_integer import LevelTransmitterInteger
@@ -91,6 +92,16 @@ def AddSlideGateTags():
 
     sg = Slidegate(int(first_gate), int(last_gate), int(gate_number), conveyor_type, line)
     sg.create_csv()
+
+    return render_template('index.html')
+
+@app.route("/PAFATags", methods=['GET', 'POST'])
+def AddPAFATags():
+    first_module = request.form["first_module"]
+    last_module = request.form["last_module"]
+
+    pafad = PAFADiscrete(int(first_module), int(last_module))
+    pafad.create_csv()
 
     return render_template('index.html')
 
