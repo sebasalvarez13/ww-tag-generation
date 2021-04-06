@@ -15,6 +15,7 @@ from module_signals import WeigherModule
 from ltdiscrete import LTDiscrete
 from lsdiscrete import LSDiscrete
 from vfd_discrete import VFDDiscrete
+from slidegates import SlideGate
 from tags_display import tagdisplay
 
 #from LTPackage.level_transmitter_integer import LevelTransmitterInteger
@@ -77,6 +78,19 @@ def AddVFDDiscreteTags():
 
     vfd = VFDDiscrete(int(first_vfd), int(last_vfd), conveyor_type, line)
     vfd.create_csv()
+
+    return render_template('index.html')
+
+@app.route("/SGTags", methods=['GET', 'POST'])
+def AddSlideGateTags():
+    first_gate = request.form["first_gate"]
+    last_gate = request.form["last_gate"]
+    gate_number = request.form["gate_number"]
+    conveyor_type = request.form["conveyor_type"]
+    line = request.form["line"]
+
+    sg = Slidegate(int(first_gate), int(last_gate), int(gate_number), conveyor_type, line)
+    sg.create_csv()
 
     return render_template('index.html')
 
