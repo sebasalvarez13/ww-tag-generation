@@ -1,3 +1,10 @@
+head{
+  background-color: rgb(173, 230, 195);
+}
+body{
+  background-color: rgb(255, 255, 255);
+}
+
 /*Style the input box */
 .form input[type = number]{
   background-color: rgb(245, 198, 127);
@@ -10,12 +17,12 @@
 .tab{
     overflow: hidden;
     border: 1px solid #ccc;
-    background-color: #f1f1f1;
+    background-color: #410ff7;
 }
   
 /*Style the buttons that are used to open the tab content*/
 .tab button{
-  background-color: inherit;
+  background-color: rgb(9, 177, 243);
   float: left;
   border: none;
   outline: none;
@@ -26,12 +33,12 @@
 
 /*Chnage background color of buttons on hover*/
 .tab button hover{
-  background-color: #ddd;
+  background-color: rgb(248, 11, 11);
 }
 
 /*Create an active/current tablink class */
 .tab button.active {
-  background-color: #ccc;
+  background-color: rgb(95, 63, 238);
 
 }
 
@@ -43,4 +50,26 @@
   border: 1px solid #ccc;
   border-top: none;
 }
+input{
+  background-color: rgb(207, 228, 245);
+  height: 25px;
+  width: 200px;
+  font-size: 14pt;
+  color: rgb(0, 26, 172);
+  display: inline-flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+select{
+  background-color: rgb(207, 228, 245);
+  height: 25px;
+  width: 200px;
+  font-size: 14pt;
+  color: rgb(0, 26, 172);
+  display: inline-flex;
+  flex-direction: column;
+  margin-top: 10px;
+
+}
+
   
