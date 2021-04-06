@@ -20,7 +20,8 @@
     <button class="tablinks" onclick="openTab(event, 'tab3')">VFD Discrete</button>
     <button class="tablinks" onclick="openTab(event, 'tab4')">Level Sensors</button>
     <button class="tablinks" onclick="openTab(event, 'tab5')">Slide gates</button>
-    <button class="tablinks" onclick="openTab(event, 'tab6')">Append CSV Files</button>
+    <button class="tablinks" onclick="openTab(event, 'tab6')">PAFA</button>    
+    <button class="tablinks" onclick="openTab(event, 'tab7')">Append CSV Files</button>
   </div>
 
   <!--Tab Content-->
@@ -160,6 +161,24 @@
 
 
   <div id="tab6" class="tabcontent">
+    <h3>PAFA Tags</h3>
+    <p>Discrete: Permissive, Suspended, Green Efficiency, Yellow Efficiency, Red Efficiency</p>
+    <center>
+    	<font color="black" size="4" style="font-family: avenir">
+    		<h1 style="color: DodgerBlue">PAFA Tags</h1>
+    		<!--body bgcolor = "blue"-->
+    			<form action="/PAFATags" autocomplete="on" method = "POST" enctype="multipart/form-data">
+    	  		First Module:<br> <input type="number" name="first_module" ><br><br>
+    	  		Last Module:<br> <input type="number" name="last_module" ><br><br>
+    		  	<button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
+          </form>
+    		</body>
+    	</font>
+    </center>
+  </div>
+
+
+  <div id="tab7" class="tabcontent">
     <h3>Append CSV Files</h3>
     <p>This will combine all the created tags into a single csv file that you can DB load.</p>
     <form method="POST" action="/AppendTags">
