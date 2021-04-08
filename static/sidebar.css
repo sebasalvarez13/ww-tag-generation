@@ -2,9 +2,9 @@
     width: 130px;
     position: fixed;
     z-index: 1;
-    top: 20px;
+    top: 80px;
     left: 10px;
-    background: #eee;
+    background: rgb(10, 232, 248);
     overflow-x: hidden;
     padding: 8px 0;
   }
@@ -25,6 +25,7 @@
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
+
   /*Style the tab */
 .pagecontent{
   overflow: hidden;
