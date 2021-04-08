@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8" />    
     <link rel = "stylesheet" href = "static/tabs.css" type = "text/css"></link>
+    <link rel = "stylesheet" href = "static/sidebar.css" type = "text/css"></link>
 
 <center>
   <h1 style="color: DodgerBlue">Wonderware Tag Generator</h1>
@@ -13,9 +14,22 @@
 
 <body>
   <script type = "text/javascript" src="/static/tabs.js"></script>
-  <!--script src="/static/tabs.js" charset="utf-8"></script-->
+  <script type = "text/javascript" src="/static/sidebar.js"></script>
 
-    <div class="tab">
+  <!--script src="/static/tabs.js" charset="utf-8"></script-->
+  <div class="sidenav">
+    <a href="#about">About</a>
+    <button class="pagelinks" onclick="openPage(event, 'tagtabs')">Tags</button><br>
+    <button class="pagelinks" onclick="openPage(event, 'scripttabs')">Scripts</button>
+    <a href="#services">Services</a>
+    <a href="#clients">Clients</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!--main contains the tabs for the tags and the tab content-->
+  <div class="main">
+
+    <div id="tagtabs" class="tab">
       <button class="tablinks" onclick="openTab(event, 'tab1')">Level Transmitters</button>
       <button class="tablinks" onclick="openTab(event, 'tab2')">WM Signals</button>
       <button class="tablinks" onclick="openTab(event, 'tab3')">VFD Discrete</button>
@@ -23,6 +37,9 @@
       <button class="tablinks" onclick="openTab(event, 'tab5')">Slide gates</button>
       <button class="tablinks" onclick="openTab(event, 'tab6')">PAFA</button>    
       <button class="tablinks" onclick="openTab(event, 'tab7')">Append CSV Files</button>
+    </div>
+
+    <div id="scripttags" class="tab">
       <button class="tablinks" onclick="openTab(event, 'script_tab1')">WM Window Script</button>
     </div>
 
@@ -57,169 +74,170 @@
 
 
   <!--Tab Content-->
-  <div id="tab1" class="tabcontent">
-    <h3>Level Transmitters</h3>
-    <p>Discrete: Stat On, Stat Off. Integer: Setpoint, Debounce On, Debounce Off. Real: Filtered, Filter Weight Entry</p>
-    <center>
-    	<font color="black" size="4" style="font-family: avenir">
-    		<h1 style="color: DodgerBlue">Level Transmitter Tags</h1>
-    			<form action="/LTTags" autocomplete="off" method = "POST" enctype="multipart/form-data">
-    		  		First Transmitter:<br> <input type="number" name="first_transmitter" ><br><br>
-    		  		Last Transmitter:<br> <input type="number" name="last_transmitter" ><br><br>
-    		  		Transmitter Number:<br> <input type="number" name="transmitter_number" ><br><br>
-    		  		Conveyor Type:<br>
-                <select name="conveyor_type">
-                  <option value="Accumulation">Accumulation</option>
-                  <option value="Transfer">Transfer</option>
-                  <option value="Distribution">Distribution</option>
-                  <option value="Weigher Feeder">Weigher Feeder</option>
-                  <option value="Modulation">Modulation</option>
-                </select>
-              <br><br>
-    		  		Line:<br> <input type="text" name="line"><br><br>
-
-    		  		<button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
-          </form>
-    		</body>
-    	</font>
-    </center>
-  </div>
-
-
-  <div id="tab2" class="tabcontent">
-    <h3>Weigher Module Signals</h3>
-    <p>Discrete: Infeed Enable, Call For Product, Dump Confirm and Weigher Comms.</p>
-    <center>
-    	<font color="black" size="4" style="font-family: avenir">
-    		<h1 style="color: DodgerBlue">Weigher Module Signals</h1>
-    		<!--body bgcolor = "blue"-->
-    			<form action="/WMTags" autocomplete="on" method = "POST" enctype="multipart/form-data">
-    	  		First Module:<br> <input type="number" name="first_module" ><br><br>
-    	  		Last Module:<br> <input type="number" name="last_module" ><br><br>
-    		  	<button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
-          </form>
-    		</body>
-    	</font>
-    </center>
-  </div>
-
-
-  <div id="tab3" class="tabcontent">
-    <h3>VFD Discrete Tags</h3>
-    <p>Disconnect, Fault Disconnect, Fault Communication, Fault Device, Fault Ready and Fault FailedForward</p>
-    <center>
-    	<font color="black" size="4" style="font-family: avenir">
-    		<h1 style="color: DodgerBlue">VFD Discrete Tags</h1>
-    		<!--body bgcolor="white"-->
-    			<form action="/VFDDiscreteTags" autocomplete="on" method = "POST" enctype="multipart/form-data">
-    		  		First VFD:<br> <input type="number" name="first_vfd" ><br><br>
-    		  		Last VFD:<br> <input type="number" name="last_vfd" ><br><br>
-    		  		Conveyor Type:<br>
-                <select name="conveyor_type">
-                  <option value="Accumulation">Accumulation</option>
-                  <option value="Transfer">Transfer</option>
-                  <option value="Distribution">Distribution</option>
-                  <option value="Weigher Feeder">Weigher Feeder</option>
-                  <option value="Modulation">Modulation</option>
-                </select>
-              <br><br>
-    		  		Line:<br> <input type="text" name="line"><br><br>
-
-    		  		<button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
-          </form>
-    		</body>
-    	</font>
-    </center>
-  </div>
-
-
-  <div id="tab4" class="tabcontent">
-    <h3>Level Sensors</h3>
-    <p>Discrete: Stat On, Stat Off. Integer: Debounce On, Debounce Off.</p>
-    <center>
-    	<font color="black" size="4" style="font-family: avenir">
-    		<h1 style="color: DodgerBlue">Level Sensor Tags</h1>
-    		<!--body bgcolor="white"-->
-    			<form action="/LSTags" autocomplete="on" method = "POST" enctype="multipart/form-data">
-    		  		First Sensor:<br> <input type="number" name="first_sensor" ><br><br>
-    		  		Last Sensor:<br> <input type="number" name="last_sensor" ><br><br>
-    		  		Sensor Number:<br> <input type="number" name="sensor_number" ><br><br>
-    		  		Conveyor Type:<br>
-                <select name="conveyor_type">
-                  <option value="Accumulation">Accumulation</option>
-                  <option value="Transfer">Transfer</option>
-                  <option value="Distribution">Distribution</option>
-                  <option value="Weigher Feeder">Weigher Feeder</option>
-                  <option value="Modulation">Modulation</option>
-                </select>
-              <br><br>
-    		  		Line:<br> <input type="text" name="line"><br><br>
-
-    		  		<button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
-          </form>
-    		</body>
-    	</font>
-    </center>
-  </div>
-
-  <div id="tab5" class="tabcontent">
-    <h3>Slide gates</h3>
-    <p>Discrete: Auto PB, Manual Mode, Manual Close, Manual Open, Open</p>
-    <center>
-    	<font color="black" size="4" style="font-family: avenir">
-    		<h1 style="color: DodgerBlue">Slide gates Tags</h1>
-    			<form action="/LTTags" autocomplete="off" method = "POST" enctype="multipart/form-data">
-    		  		First Gate:<br> <input type="number" name="first_gate" ><br><br>
-    		  		Last Gate:<br> <input type="number" name="last_gate" ><br><br>
-    		  		Gate Number:<br> <input type="number" name="gate_number" ><br><br>
-    		  		Conveyor Type:<br>
-                <select name="conveyor_type">
-                  <option value="Accumulation">Accumulation</option>
-                  <option value="Transfer">Transfer</option>
-                  <option value="Distribution">Distribution</option>
-                  <option value="Weigher Feeder">Weigher Feeder</option>
-                  <option value="Modulation">Modulation</option>
-                </select>
-              <!--/div-->
-              <br><br>
-    		  		Line:<br> <input type="text" name="line"><br><br>
-
-    		  		<button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
-          </form>
-    		</body>
-    	</font>
-    </center>
-  </div>
-
-
-  <div id="tab6" class="tabcontent">
-    <h3>PAFA Tags</h3>
-    <p>Discrete: Permissive, Suspended, Green Efficiency, Yellow Efficiency, Red Efficiency</p>
-    <center>
-    	<font color="black" size="4" style="font-family: avenir">
-    		<h1 style="color: DodgerBlue">PAFA Tags</h1>
-    		<!--body bgcolor = "blue"-->
-    			<form action="/PAFATags" autocomplete="on" method = "POST" enctype="multipart/form-data">
-    	  		First Module:<br> <input type="number" name="first_module" ><br><br>
-    	  		Last Module:<br> <input type="number" name="last_module" ><br><br>
-    		  	<button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
-          </form>
-    		</body>
-    	</font>
-    </center>
-  </div>
-
-
-  <div id="tab7" class="tabcontent">
-    <h3>Append CSV Files</h3>
-    <p>This will combine all the created tags into a single csv file that you can DB load.</p>
-    <form method="POST" action="/AppendTags">
+    <div id="tab1" class="tabcontent">
+      <h3>Level Transmitters</h3>
+      <p>Discrete: Stat On, Stat Off. Integer: Setpoint, Debounce On, Debounce Off. Real: Filtered, Filter Weight Entry</p>
       <center>
-        <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;" value= "append_tags">APPEND TAGS</button>
-      </center>
-    </form>
-  </div>
+        <font color="black" size="4" style="font-family: avenir">
+          <h1 style="color: DodgerBlue">Level Transmitter Tags</h1>
+            <form action="/LTTags" autocomplete="off" method = "POST" enctype="multipart/form-data">
+                First Transmitter:<br> <input type="number" name="first_transmitter" ><br><br>
+                Last Transmitter:<br> <input type="number" name="last_transmitter" ><br><br>
+                Transmitter Number:<br> <input type="number" name="transmitter_number" ><br><br>
+                Conveyor Type:<br>
+                  <select name="conveyor_type">
+                    <option value="Accumulation">Accumulation</option>
+                    <option value="Transfer">Transfer</option>
+                    <option value="Distribution">Distribution</option>
+                    <option value="Weigher Feeder">Weigher Feeder</option>
+                    <option value="Modulation">Modulation</option>
+                  </select>
+                <br><br>
+                Line:<br> <input type="text" name="line"><br><br>
 
+                <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
+            </form>
+          </body>
+        </font>
+      </center>
+    </div>
+
+
+    <div id="tab2" class="tabcontent">
+      <h3>Weigher Module Signals</h3>
+      <p>Discrete: Infeed Enable, Call For Product, Dump Confirm and Weigher Comms.</p>
+      <center>
+        <font color="black" size="4" style="font-family: avenir">
+          <h1 style="color: DodgerBlue">Weigher Module Signals</h1>
+          <!--body bgcolor = "blue"-->
+            <form action="/WMTags" autocomplete="on" method = "POST" enctype="multipart/form-data">
+              First Module:<br> <input type="number" name="first_module" ><br><br>
+              Last Module:<br> <input type="number" name="last_module" ><br><br>
+              <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
+            </form>
+          </body>
+        </font>
+      </center>
+    </div>
+
+
+    <div id="tab3" class="tabcontent">
+      <h3>VFD Discrete Tags</h3>
+      <p>Disconnect, Fault Disconnect, Fault Communication, Fault Device, Fault Ready and Fault FailedForward</p>
+      <center>
+        <font color="black" size="4" style="font-family: avenir">
+          <h1 style="color: DodgerBlue">VFD Discrete Tags</h1>
+          <!--body bgcolor="white"-->
+            <form action="/VFDDiscreteTags" autocomplete="on" method = "POST" enctype="multipart/form-data">
+                First VFD:<br> <input type="number" name="first_vfd" ><br><br>
+                Last VFD:<br> <input type="number" name="last_vfd" ><br><br>
+                Conveyor Type:<br>
+                  <select name="conveyor_type">
+                    <option value="Accumulation">Accumulation</option>
+                    <option value="Transfer">Transfer</option>
+                    <option value="Distribution">Distribution</option>
+                    <option value="Weigher Feeder">Weigher Feeder</option>
+                    <option value="Modulation">Modulation</option>
+                  </select>
+                <br><br>
+                Line:<br> <input type="text" name="line"><br><br>
+
+                <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
+            </form>
+          </body>
+        </font>
+      </center>
+    </div>
+
+
+    <div id="tab4" class="tabcontent">
+      <h3>Level Sensors</h3>
+      <p>Discrete: Stat On, Stat Off. Integer: Debounce On, Debounce Off.</p>
+      <center>
+        <font color="black" size="4" style="font-family: avenir">
+          <h1 style="color: DodgerBlue">Level Sensor Tags</h1>
+          <!--body bgcolor="white"-->
+            <form action="/LSTags" autocomplete="on" method = "POST" enctype="multipart/form-data">
+                First Sensor:<br> <input type="number" name="first_sensor" ><br><br>
+                Last Sensor:<br> <input type="number" name="last_sensor" ><br><br>
+                Sensor Number:<br> <input type="number" name="sensor_number" ><br><br>
+                Conveyor Type:<br>
+                  <select name="conveyor_type">
+                    <option value="Accumulation">Accumulation</option>
+                    <option value="Transfer">Transfer</option>
+                    <option value="Distribution">Distribution</option>
+                    <option value="Weigher Feeder">Weigher Feeder</option>
+                    <option value="Modulation">Modulation</option>
+                  </select>
+                <br><br>
+                Line:<br> <input type="text" name="line"><br><br>
+
+                <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
+            </form>
+          </body>
+        </font>
+      </center>
+    </div>
+
+    <div id="tab5" class="tabcontent">
+      <h3>Slide gates</h3>
+      <p>Discrete: Auto PB, Manual Mode, Manual Close, Manual Open, Open</p>
+      <center>
+        <font color="black" size="4" style="font-family: avenir">
+          <h1 style="color: DodgerBlue">Slide gates Tags</h1>
+            <form action="/LTTags" autocomplete="off" method = "POST" enctype="multipart/form-data">
+                First Gate:<br> <input type="number" name="first_gate" ><br><br>
+                Last Gate:<br> <input type="number" name="last_gate" ><br><br>
+                Gate Number:<br> <input type="number" name="gate_number" ><br><br>
+                Conveyor Type:<br>
+                  <select name="conveyor_type">
+                    <option value="Accumulation">Accumulation</option>
+                    <option value="Transfer">Transfer</option>
+                    <option value="Distribution">Distribution</option>
+                    <option value="Weigher Feeder">Weigher Feeder</option>
+                    <option value="Modulation">Modulation</option>
+                  </select>
+                <!--/div-->
+                <br><br>
+                Line:<br> <input type="text" name="line"><br><br>
+
+                <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
+            </form>
+          </body>
+        </font>
+      </center>
+    </div>
+
+
+    <div id="tab6" class="tabcontent">
+      <h3>PAFA Tags</h3>
+      <p>Discrete: Permissive, Suspended, Green Efficiency, Yellow Efficiency, Red Efficiency</p>
+      <center>
+        <font color="black" size="4" style="font-family: avenir">
+          <h1 style="color: DodgerBlue">PAFA Tags</h1>
+          <!--body bgcolor = "blue"-->
+            <form action="/PAFATags" autocomplete="on" method = "POST" enctype="multipart/form-data">
+              First Module:<br> <input type="number" name="first_module" ><br><br>
+              Last Module:<br> <input type="number" name="last_module" ><br><br>
+              <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
+            </form>
+          </body>
+        </font>
+      </center>
+    </div>
+
+
+    <div id="tab7" class="tabcontent">
+      <h3>Append CSV Files</h3>
+      <p>This will combine all the created tags into a single csv file that you can DB load.</p>
+      <form method="POST" action="/AppendTags">
+        <center>
+          <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;" value= "append_tags">APPEND TAGS</button>
+        </center>
+      </form>
+    </div>
+
+  </div>
 </body>
 
 <footer>
