@@ -22,14 +22,12 @@
     <button class="pagelinks" onclick="openPage(event, 'tagtabs')">Tags</button><br>
     <button class="pagelinks" onclick="openPage(event, 'scripttabs')">Scripts</button>
     <a href="#services">Services</a>
-    <a href="#clients">Clients</a>
-    <a href="#contact">Contact</a>
   </div>
 
   <!--main contains the tabs for the tags and the tab content-->
   <div class="main">
 
-    <div id="tagtabs" class="tab">
+    <div id="tagtabs" class="pagecontent">
       <button class="tablinks" onclick="openTab(event, 'tab1')">Level Transmitters</button>
       <button class="tablinks" onclick="openTab(event, 'tab2')">WM Signals</button>
       <button class="tablinks" onclick="openTab(event, 'tab3')">VFD Discrete</button>
@@ -39,10 +37,12 @@
       <button class="tablinks" onclick="openTab(event, 'tab7')">Append CSV Files</button>
     </div>
 
-    <div id="scripttags" class="tab">
+    <div id="scripttabs" class="pagecontent">
       <button class="tablinks" onclick="openTab(event, 'script_tab1')">WM Window Script</button>
     </div>
 
+
+    
     <div id="script_tab1" class="tabcontent">
       <h3>WM Window Script</h3>
       <p>Distribution, WF, Weigher, PAFA</p>
