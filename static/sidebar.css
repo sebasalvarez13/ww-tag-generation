@@ -25,3 +25,40 @@
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
+  /*Style the tab */
+.pagecontent{
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #410ff7;
+}
+
+/*Style the buttons that are used to open the tab content*/
+.pagecontent button{
+background-color: rgb(9, 177, 243);
+float: left;
+border: none;
+outline: none;
+cursor: pointer;
+padding: 14px 16px;
+transition: 0.3s;
+}
+
+/*Chnage background color of buttons on hover*/
+.pagecontent button hover{
+background-color: rgb(248, 11, 11);
+}
+
+/*Create an active/current tablink class */
+.pagecontent button.active {
+background-color: rgb(95, 63, 238);
+
+}
+
+/*Style the tab content*/
+.pagecontentcontent{
+display: none;
+padding: 6px 12px;
+height: 100%;
+border: 1px solid #ccc;
+border-top: none;
+}
