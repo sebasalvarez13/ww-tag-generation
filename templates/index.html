@@ -15,14 +15,57 @@
   <script type = "text/javascript" src="/static/tabs.js"></script>
   <!--script src="/static/tabs.js" charset="utf-8"></script-->
   <div class="tab">
-    <button class="tablinks" onclick="openTab(event, 'tab1')">Level Transmitters</button>
-    <button class="tablinks" onclick="openTab(event, 'tab2')">WM Signals</button>
-    <button class="tablinks" onclick="openTab(event, 'tab3')">VFD Discrete</button>
-    <button class="tablinks" onclick="openTab(event, 'tab4')">Level Sensors</button>
-    <button class="tablinks" onclick="openTab(event, 'tab5')">Slide gates</button>
-    <button class="tablinks" onclick="openTab(event, 'tab6')">PAFA</button>    
-    <button class="tablinks" onclick="openTab(event, 'tab7')">Append CSV Files</button>
-  </div>
+    <button class="tablink" onclick="openTab(event, 'Tags')">Tags</button>
+    <button class="tablink" onclick="openTab(event, 'Scripts')">Scripts</button>
+  </div>  
+
+    <div id="Tags" class="tabcontent">
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'tab1')">Level Transmitters</button>
+        <button class="tablinks" onclick="openTab(event, 'tab2')">WM Signals</button>
+        <button class="tablinks" onclick="openTab(event, 'tab3')">VFD Discrete</button>
+        <button class="tablinks" onclick="openTab(event, 'tab4')">Level Sensors</button>
+        <button class="tablinks" onclick="openTab(event, 'tab5')">Slide gates</button>
+        <button class="tablinks" onclick="openTab(event, 'tab6')">PAFA</button>    
+        <button class="tablinks" onclick="openTab(event, 'tab7')">Append CSV Files</button>
+      </div>
+    </div>
+
+    <div id="Scripts" class="tabcontent">
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'script_tab1')">WM Window Script</button>
+      </div>
+    </div>
+
+    <div id="script_tab1" class="tabcontent">
+      <h3>WM Window Script</h3>
+      <p>Distribution, WF, Weigher, PAFA</p>
+      <center>
+        <font color="black" size="4" style="font-family: avenir">
+          <h1 style="color: DodgerBlue">WM Window Script</h1>
+            <form action="/WMScripts" autocomplete="off" method = "POST" enctype="multipart/form-data">
+                First Module:<br> <input type="number" name="first_module" ><br><br>
+                Last Module:<br> <input type="number" name="last_module" ><br><br>
+                Transmitter Number:<br> <input type="number" name="transmitter_number" ><br><br>
+                Conveyor Type:<br>
+                  <select name="conveyor_type">
+                    <option value="Accumulation">Accumulation</option>
+                    <option value="Transfer">Transfer</option>
+                    <option value="Distribution">Distribution</option>
+                    <option value="Weigher Feeder">Weigher Feeder</option>
+                    <option value="Modulation">Modulation</option>
+                  </select>
+                <br><br>
+                Line:<br> <input type="text" name="line"><br><br>
+  
+                <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE SCRIPTS</button>
+            </form>
+          </body>
+        </font>
+      </center>
+    </div>
+
+
 
   <!--Tab Content-->
   <div id="tab1" class="tabcontent">
@@ -187,7 +230,6 @@
       </center>
     </form>
   </div>
-
 
 </body>
 
