@@ -17,7 +17,10 @@ from lsdiscrete import LSDiscrete
 from vfd_discrete import VFDDiscrete
 from slidegates import SlideGate
 from pafa_discrete import PAFADiscrete
+
 from tags_display import tagdisplay
+
+from wm_script import WMScript
 
 #from LTPackage.level_transmitter_integer import LevelTransmitterInteger
 #from LTPackage.level_transmitter_real import LevelTransmitterReal
@@ -104,6 +107,28 @@ def AddPAFATags():
     pafad.create_csv()
 
     return render_template('index.html')
+
+
+@app.route("/WMScripts", methods=['GET', 'POST'])
+def AddWMWindowScripts():
+    first_module = request.form["first_module"]
+    last_module = request.form["last_module"]
+    transmitter_number = request.form["transmitter_number"]
+    conveyor_type = request.form["conveyor_type"]
+    line = request.form["line"]
+
+    wm = WMScript(int(first_module), int(last_module), int(transmitter_number), conveyor_type, line)
+    for i in range(int(first_module), (int(last_module) + 1)):
+        module = i
+        str1 = wm.distribution(module)
+        str2 = wm.weigher_feeder(module)
+        str3 = wm.weigher(module)
+        str4 = wm.pafa(module)
+        str5 = wm.misc(module)
+        wm.create_script(module, str1, str2, str3, str4, str5)
+
+    return render_template('index.html')
+
 
 @app.route("/AppendTags", methods = ["GET", "POST"])
 def AppendTags():
