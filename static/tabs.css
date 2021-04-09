@@ -23,7 +23,7 @@ body{
 .tab{
     overflow: hidden;
     border: 1px solid #ccc;
-    background-color: #410ff7;
+    background-color: #0ff79e;
 }
   
 /*Style the buttons that are used to open the tab content*/
@@ -35,6 +35,7 @@ body{
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
+
 }
 
 /*Chnage background color of buttons on hover*/
