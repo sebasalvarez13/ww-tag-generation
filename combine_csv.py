@@ -29,6 +29,7 @@ class MergedDataFrame():
         df_list = []
         #filenames = [i for i in glob.glob(f"*{file_extension}")]
         #df_from_each_file = (pd.read_csv(f, sep=',') for f in filenames)
+        
         for f in filenames:
             df_from_each_file = (pd.read_csv(f, sep=','))
             df_list.append((df_from_each_file))
