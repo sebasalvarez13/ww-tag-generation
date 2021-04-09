@@ -33,8 +33,7 @@ class MergedDataFrame():
         for f in filenames:
             df_from_each_file = (pd.read_csv(f, sep=','))
             df_list.append((df_from_each_file))
-
-        print(df_list)
+    
         df_merged = pd.concat(df_list, ignore_index=False)
         #print(df_merged)
         #print(df_merged.drop(df_merged.columns[3], axis = 1))
@@ -45,5 +44,27 @@ class MergedDataFrame():
 
 #Export to csv
 #combined_csv.to_csv( "alltags.csv", index = False, encoding = "utf-8-sig")
+
+    def mergeIO():
+        #os.chdir("/mnt/c/Projects/ww-tag-generation/csv-files")
+        file_extension = ".csv"
+        filenames = []
+        df_from_each_file = ()
+
+        for f in glob.glob("/mnt/c/Projects/ww-tag-generation/csv-files/*.csv"):
+            if f != "/mnt/c/Projects/ww-tag-generation/csv-files/merged.csv":
+                filenames.append(f)
+
+        df_list = []
+        
+        for f in filenames:
+            df_from_each_file = (pd.read_csv(f, sep=',', header = None))
+            df_list.append((df_from_each_file))
+    
+        df_merged = pd.concat(df_list, ignore_index=False)
+        df_appended = df_list[0].append(df_list[1])
+
+        return(df_merged)
+
 if __name__ == "__main__":
-    MergedDataFrame.merge()
+    print(MergedDataFrame.mergeIO())
