@@ -12,8 +12,8 @@ import glob
 import pandas as pd
 from combine_csv import MergedDataFrame
 from module_signals import WeigherModule
-from ltdiscrete import LTDiscrete
-from lsdiscrete import LSDiscrete
+from lt_discrete import LTDiscrete
+from ls_discrete import LSDiscrete
 from vfd_discrete import VFDDiscrete
 from slidegates import SlideGate
 from pafa_discrete import PAFADiscrete
