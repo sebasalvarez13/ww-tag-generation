@@ -132,15 +132,9 @@ def AddWMWindowScripts():
 
 @app.route("/AppendTags", methods = ["GET", "POST"])
 def AppendTags():
-    folders = ["discrete", "integer"]
-    for f in folders:
-        path = "csv-files/merged/{}_merged.csv".format(f)
-        df_merged = MergedDataFrame.merge(f)
-        df_merged.to_csv(path, index = False, encoding = "utf-8-sig")
-
-    df_combined = MergedDataFrame.mergeIO()
-    df_combined.to_csv("csv-files/merged/final.csv", index = False, encoding = "utf-8-sig")
-
+    df_merged = MergedDataFrame.merge()
+    df_merged.to_csv( "csv-files/merged.csv", index = False, encoding = "utf-8-sig")
+    
     return render_template("output.html")
 
 @app.route("/DisplayTags", methods = ["GET", "POST"])
