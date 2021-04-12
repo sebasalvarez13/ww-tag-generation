@@ -132,10 +132,19 @@ def AddWMWindowScripts():
 
 @app.route("/AppendTags", methods = ["GET", "POST"])
 def AppendTags():
-    df_merged = MergedDataFrame.merge()
-    df_merged.to_csv( "csv-files/merged.csv", index = False, encoding = "utf-8-sig")
-    
+    folders = ["discrete", "integer"]
+    #creates a csv file for each type of tag: integer, discrete, real, etc
+    for f in folders:
+        path = "csv-files/merged/{}_merged.csv".format(f)
+        df_merged = MergedDataFrame.merge(f)
+        df_merged.to_csv(path, index = False, encoding = "utf-8-sig")
+
+    #combines the integer, discrete, real, etc csv files into one final csv ready to DBload
+    df_combined = MergedDataFrame.mergeIO()
+    df_combined.to_csv("csv-files/merged/final.csv", index = False, encoding = "utf-8-sig")
+
     return render_template("output.html")
+
 
 @app.route("/DisplayTags", methods = ["GET", "POST"])
 def DisplayTags():
