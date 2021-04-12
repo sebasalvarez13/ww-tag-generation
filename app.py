@@ -13,8 +13,11 @@ import pandas as pd
 from combine_csv import MergedDataFrame
 from module_signals import WeigherModule
 from lt_discrete import LTDiscrete
+from lt_integer import LTInteger
+from lt_real import LTReal
 from ls_discrete import LSDiscrete
 from vfd_discrete import VFDDiscrete
+from vfd_integer import VFDInteger
 from slidegates import SlideGate
 from pafa_discrete import PAFADiscrete
 
@@ -22,8 +25,6 @@ from tags_display import tagdisplay
 
 from wm_script import WMScript
 
-#from LTPackage.level_transmitter_integer import LevelTransmitterInteger
-#from LTPackage.level_transmitter_real import LevelTransmitterReal
 
 #import sqlalchemy
 #import boto3
@@ -47,6 +48,12 @@ def AddLevelTransTags():
 
     ltd = LTDiscrete(int(first_transmitter), int(last_transmitter), int(transmitter_number), conveyor_type, line)
     ltd.create_csv()
+
+    lti = LTInteger(int(first_transmitter), int(last_transmitter), int(transmitter_number), conveyor_type, line)
+    lti.create_csv()
+
+    ltr = LTReal(int(first_transmitter), int(last_transmitter), int(transmitter_number), conveyor_type, line)
+    ltr.create_csv()
 
     return render_template('index.html')
 
@@ -132,7 +139,7 @@ def AddWMWindowScripts():
 
 @app.route("/AppendTags", methods = ["GET", "POST"])
 def AppendTags():
-    folders = ["discrete", "integer"]
+    folders = ["discrete", "integer", "real"]
     #creates a csv file for each type of tag: integer, discrete, real, etc
     for f in folders:
         path = "csv-files/merged/{}_merged.csv".format(f)
