@@ -48,8 +48,11 @@ class MergedDataFrame():
         for f in filenames:
             df_from_each_file = (pd.read_csv(f, sep=',', header = None))
             df_list.append((df_from_each_file))
-    
-        df_appended = df_list[0].append(df_list[1])
+            
+        df_appended = pd.DataFrame()  
+        for frame in df_list:
+            df_appended = df_appended.append(frame)
+
 
         return(df_appended)
 
