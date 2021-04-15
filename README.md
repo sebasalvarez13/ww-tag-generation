@@ -1,4 +1,4 @@
-# PSI Wonderware Tag Generator 
+# Wonderware Tag Generator 
 
 ## Table of contents
 * [General info](#general-info)
