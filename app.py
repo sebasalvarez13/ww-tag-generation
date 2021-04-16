@@ -11,14 +11,14 @@ import sqlite3
 import glob
 import pandas as pd
 from combine_csv import MergedDataFrame
-from module_signals import WeigherModule
+from wm_discrete import WMDIscrete
 from lt_discrete import LTDiscrete
 from lt_integer import LTInteger
 from lt_real import LTReal
 from ls_discrete import LSDiscrete
 from vfd_discrete import VFDDiscrete
 from vfd_integer import VFDInteger
-from slidegates import SlideGate
+from sg_discrete import SGDiscrete
 from pafa_discrete import PAFADiscrete
 
 from tags_display import tagdisplay
@@ -75,7 +75,7 @@ def AddModuleTags():
     first_module = request.form["first_module"]
     last_module = request.form["last_module"]
 
-    wm = WeigherModule(int(first_module), int(last_module))
+    wm = WMDIscrete(int(first_module), int(last_module))
     wm.create_csv()
 
     return render_template('index.html')
@@ -100,7 +100,7 @@ def AddSlideGateTags():
     conveyor_type = request.form["conveyor_type"]
     line = request.form["line"]
 
-    sg = Slidegate(int(first_gate), int(last_gate), int(gate_number), conveyor_type, line)
+    sg = SGDiscrete(int(first_gate), int(last_gate), int(gate_number), conveyor_type, line)
     sg.create_csv()
 
     return render_template('index.html')
