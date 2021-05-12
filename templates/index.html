@@ -32,8 +32,10 @@
       <button class="tablinks" onclick="openTab(event, 'tab3')">VFD Discrete</button>
       <button class="tablinks" onclick="openTab(event, 'tab4')">Level Sensors</button>
       <button class="tablinks" onclick="openTab(event, 'tab5')">Slide gates</button>
-      <button class="tablinks" onclick="openTab(event, 'tab6')">PAFA</button>    
-      <button class="tablinks" onclick="openTab(event, 'tab7')">Append CSV Files</button>
+      <button class="tablinks" onclick="openTab(event, 'tab6')">PAFA</button>
+      <button class="tablinks" onclick="openTab(event, 'tab7')">PkgAutoSys</button> 
+      <button class="tablinks" onclick="openTab(event, 'tab8')">Rev Gates</button>           
+      <button class="tablinks" onclick="openTab(event, 'tab9')">Append CSV Files</button>
     </div>
 
     <div id="scripttabs" class="pagecontent">
@@ -227,6 +229,46 @@
 
 
     <div id="tab7" class="tabcontent">
+      <h3>PkgAutoSys Tags</h3>
+      <p>WeighMod, WeighMod_Gate</p>
+      <center>
+        <font color="black" size="4" style="font-family: avenir">
+          <h1 style="color: DodgerBlue">PAFA Tags</h1>
+          <!--body bgcolor = "blue"-->
+            <form action="/pkgautosys" autocomplete="on" method = "POST" enctype="multipart/form-data">
+              First Module:<br> <input type="number" name="first_module" ><br><br>
+              Last Module:<br> <input type="number" name="last_module" ><br><br>
+              Line:<br> <input type="text" name="line"><br><br>
+
+              <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
+            </form>
+          </body>
+        </font>
+      </center>
+    </div> 
+    
+    
+    <div id="tab8" class="tabcontent">
+      <h3>Rev Gate Tags</h3>
+      <p>CMD, Fault, Status</p>
+      <center>
+        <font color="black" size="4" style="font-family: avenir">
+          <h1 style="color: DodgerBlue">PAFA Tags</h1>
+          <!--body bgcolor = "blue"-->
+            <form action="/revgates" autocomplete="on" method = "POST" enctype="multipart/form-data">
+              First Gate:<br> <input type="number" name="first_gate" ><br><br>
+              Last Gate:<br> <input type="number" name="last_gate" ><br><br>
+              Line:<br> <input type="text" name="line"><br><br>
+
+              <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
+            </form>
+          </body>
+        </font>
+      </center>
+    </div>  
+
+
+    <div id="tab9" class="tabcontent">
       <h3>Append CSV Files</h3>
       <p>This will combine all the created tags into a single csv file that you can DB load.</p>
       <form method="POST" action="/AppendTags">
