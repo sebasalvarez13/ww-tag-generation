@@ -2,7 +2,7 @@
 
 import csv
 
-class WMDIscrete:
+class WMDiscrete:
     def __init__(self, first_module, last_module):
         self.first_module = first_module
         self.last_module = last_module
@@ -62,7 +62,8 @@ class WMDIscrete:
         for i in range(self.first_module, self.last_module + 1):
             dict1 = self.features()
             dict1[":IODisc"] = "WM{}_Control_Weigher_Comms".format(i)
-            dict1["AlarmState"] = "On"
+            dict1["InitialDisc"] = "On"            
+            dict1["AlarmState"] = "Off"
             dict1["ItemName"] = "WM{}_Control.Weigher_Comms".format(i)
             dict1["AlarmComment"] = "Weigher Module {} Comms Lost".format(i)
 
