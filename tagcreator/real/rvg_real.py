@@ -97,6 +97,7 @@ class RVGReal:
 
         return(dict_data)
 
+
     def mpm(self):
         dict_data = self.angle_manual()
         for i in range(self.first_gate, self.last_gate + 1):
@@ -125,8 +126,8 @@ class RVGReal:
         dict_data = self.angle_sts()
         for i in range(self.first_gate, self.last_gate + 1):
             dict1 = self.features()
-            dict1[":IOReal"] = "WM{}_RVG{}M_Product_Available".format(i, self.line_number)
-            dict1["ItemName"] = "WM{}_RVG{}M.Product_Available".format(i, self.line_number)
+            dict1[":IOReal"] = "WM{}_RVG{}MREV_Product_Available".format(i, self.line_number)
+            dict1["ItemName"] = "WM{}_RVG{}MREV.Product_Available".format(i, self.line_number)
 
             dict_data.append(dict1)
 
