@@ -12,7 +12,9 @@ class VFDInteger:
         self.conveyor_type_letter = conveyor_types[conveyor_type]
         self.line = line
 
-
+        if self.conveyor_type == "Weigher Feeder":
+            self.line = ""
+            
     def features(self):
         """Features for IO Integer Tags"""
         dict_data = []
@@ -133,9 +135,38 @@ class VFDInteger:
         return(dict_data) 
 
 
+    def max_freq(self):
+        dict_data = self.speedref()
+        for i in range(self.first_vfd, self.last_vfd + 1):
+            dict1 = self.features()
+            dict1[":IOInt"] = "M{}{}{}_Max_Frequency".format(self.conveyor_type_letter, i, self.line)
+            dict1["ItemName"] = "M{}{}{}_VFD:I.MaximumFreq".format(self.conveyor_type_letter, i, self.line)
+            dict1["MinEU"] = 0
+            dict1["MaxEU"] = 1000
+            dict1["MinRaw"] = 0
+            dict1["MaxRaw"] = 100000
+            dict_data.append(dict1)
+
+        return(dict_data)
+        
+    def min_freq(self):
+        dict_data = self.max_freq()
+        for i in range(self.first_vfd, self.last_vfd + 1):
+            dict1 = self.features()
+            dict1[":IOInt"] = "M{}{}{}_Min_Frequency".format(self.conveyor_type_letter, i, self.line)
+            dict1["ItemName"] = "M{}{}{}_VFD:I.MinimumFreq".format(self.conveyor_type_letter, i, self.line)
+            dict1["MinEU"] = 0
+            dict1["MaxEU"] = 1000
+            dict1["MinRaw"] = 0
+            dict1["MaxRaw"] = 100000
+            dict_data.append(dict1)
+
+        return(dict_data)          
+
+
     def create_csv(self):
         csv_file = "csv-files/integer/vfd_integer_{}_{}.csv".format(self.conveyor_type, self.line)
-        dict_data = self.speedref()
+        dict_data = self.min_freq()
         csv_columns = list(dict_data[0].keys())
     
         try:
