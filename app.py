@@ -13,18 +13,25 @@ import pandas as pd
 from combine_csv import MergedDataFrame
 from tagcreator.discrete.wm_discrete import WMDiscrete
 from tagcreator.discrete.lt_discrete import LTDiscrete
-from tagcreator.integer.lt_integer import LTInteger
-from tagcreator.real.lt_real import LTReal
 from tagcreator.discrete.ls_discrete import LSDiscrete
 from tagcreator.discrete.vfd_discrete import VFDDiscrete
 from tagcreator.discrete.sg_discrete import SGDiscrete
 from tagcreator.discrete.pafa_discrete import PAFADiscrete
 
+from tagcreator.integer.lt_integer import LTInteger
 from tagcreator.integer.vfd_integer import VFDInteger
 from tagcreator.integer.wm_integer import WMInteger
 from tagcreator.integer.rvg_integer import RVGInteger
 from tagcreator.integer.pkgautosys_integer import PkgAutoSysInteger
-#from tagcreator.discrete import lt_discrete
+
+from tagcreator.real.lt_real import LTReal
+from tagcreator.real.pafa_real import PAFAReal
+from tagcreator.real.rvg_real import RVGReal
+from tagcreator.real.wm_real import WMReal
+from tagcreator.real.wmstats_real import WMStatsReal
+
+
+
 from tags_display import tagdisplay
 
 from wm_script import WMScript
@@ -85,6 +92,12 @@ def AddModuleTags():
     wmi = WMInteger(int(first_module), int(last_module))
     wmi.create_csv()
 
+    wmr = WMReal(int(first_module), int(last_module))
+    wmr.create_csv()
+
+    wmstats = WMStatsReal(int(first_module), int(last_module))
+    wmstats.create_csv()
+
     return render_template('index.html')
 
 @app.route("/VFDDiscreteTags", methods=['GET', 'POST'])
@@ -125,6 +138,10 @@ def AddPAFATags():
     pafad = PAFADiscrete(int(first_module), int(last_module))
     pafad.create_csv()
 
+    pafar = PAFAReal(int(first_module), int(last_module))
+    pafar.create_csv()
+
+
     return render_template('index.html')
 
 
@@ -148,6 +165,9 @@ def Addrevgates():
 
     rvgi = RVGInteger(int(first_gate), int(last_gate), line)
     rvgi.create_csv()
+
+    rvgr = RVGReal(int(first_gate), int(last_gate), line)
+    rvgr.create_csv()
 
     return render_template('index.html')
 
