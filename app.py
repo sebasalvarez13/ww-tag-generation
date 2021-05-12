@@ -2,15 +2,14 @@
 
 
 from flask import Flask, render_template, request, redirect
-#import pymysql
-#from pymysql import connections
+
 import os
 import subprocess
 import sys
 import sqlite3
 import glob
 import pandas as pd
-from combine_csv import MergedDataFrame
+
 from tagcreator.discrete.wm_discrete import WMDiscrete
 from tagcreator.discrete.lt_discrete import LTDiscrete
 from tagcreator.discrete.ls_discrete import LSDiscrete
@@ -30,24 +29,17 @@ from tagcreator.real.rvg_real import RVGReal
 from tagcreator.real.wm_real import WMReal
 from tagcreator.real.wmstats_real import WMStatsReal
 
-
-
 from tags_display import tagdisplay
-
 from wm_script import WMScript
+from combine_csv import MergedDataFrame
 
-
-#import sqlalchemy
-#import boto3
-#from config import *
 
 app = Flask(__name__)
-output = {}
-#table = 'revgate_faults'
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
     return render_template('index.html')
+
 
 @app.route("/LTTags", methods=['GET', 'POST'])
 def AddLevelTransTags():
@@ -68,6 +60,7 @@ def AddLevelTransTags():
 
     return render_template('index.html')
 
+
 @app.route("/LSTags", methods=['GET', 'POST'])
 def AddLevelSensorTags():
     first_sensor = request.form["first_sensor"]
@@ -80,6 +73,7 @@ def AddLevelSensorTags():
     lsd.create_csv()
 
     return render_template('index.html')
+
 
 @app.route("/WMTags", methods=['GET', 'POST'])
 def AddModuleTags():
@@ -100,6 +94,7 @@ def AddModuleTags():
 
     return render_template('index.html')
 
+
 @app.route("/VFDDiscreteTags", methods=['GET', 'POST'])
 def AddVFDDiscreteTags():
     first_vfd = request.form["first_vfd"]
@@ -113,9 +108,8 @@ def AddVFDDiscreteTags():
     vfdi = VFDInteger(int(first_vfd), int(last_vfd), conveyor_type, line)
     vfdi.create_csv()
 
-
-
     return render_template('index.html')
+
 
 @app.route("/SGTags", methods=['GET', 'POST'])
 def AddSlideGateTags():
@@ -130,6 +124,7 @@ def AddSlideGateTags():
 
     return render_template('index.html')
 
+
 @app.route("/PAFATags", methods=['GET', 'POST'])
 def AddPAFATags():
     first_module = request.form["first_module"]
@@ -140,7 +135,6 @@ def AddPAFATags():
 
     pafar = PAFAReal(int(first_module), int(last_module))
     pafar.create_csv()
-
 
     return render_template('index.html')
 
@@ -214,9 +208,11 @@ def DisplayTags():
     tagdisplay()
     return render_template("tagstable.html")    
 
+
 @app.route("/about", methods=["GET", "POST"])
 def about():
     return redirect("https://www.processsolutions.com/")
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80, debug=True)
