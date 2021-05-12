@@ -3,7 +3,7 @@
 import csv
 
 
-class PafaReal:
+class PAFAReal:
     def __init__(self, first_module, last_module):
         self.first_module = first_module
         self.last_module = last_module
@@ -85,7 +85,7 @@ class PafaReal:
 
     def pafa_cv(self):
         dict_data = []
-        for i in range(self.first_gate, self.last_gate + 1):
+        for i in range(self.first_module, self.last_module + 1):
             dict1 = self.features()
             dict1[":IOReal"] = "WM{}_PAFA_CV".format(i)
             dict1["ItemName"] = "WM{}_OuterLoopPID.CV".format(i)
@@ -100,7 +100,7 @@ class PafaReal:
     
     def pafa_pv(self):
         dict_data = self.pafa_cv()
-        for i in range(self.first_gate, self.last_gate + 1):
+        for i in range(self.first_module, self.last_module + 1):
             dict1 = self.features()
             dict1[":IOReal"] = "WM{}_PAFA_PV".format(i)
             dict1["ItemName"] = "WM{}_PAFA.PID_PV".format(i)
@@ -115,7 +115,7 @@ class PafaReal:
 
     def wf_trend(self):
         dict_data = self.pafa_pv()
-        for i in range(self.first_gate, self.last_gate + 1):
+        for i in range(self.first_module, self.last_module + 1):
             dict1 = self.features()
             dict1[":IOReal"] = "WM{}_WF_Trend".format(i)
             dict1["ItemName"] = "WM{}_WF_Trend".format(i)
