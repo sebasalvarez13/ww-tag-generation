@@ -15,6 +15,7 @@ class VFDInteger:
         if self.conveyor_type == "Weigher Feeder":
             self.line = ""
             
+
     def features(self):
         """Features for IO Integer Tags"""
         dict_data = []
@@ -88,6 +89,7 @@ class VFDInteger:
 
         return(my_dict)
 
+
     def csw(self):
         dict_data = []
         for i in range(self.first_vfd, self.last_vfd + 1):
@@ -98,6 +100,7 @@ class VFDInteger:
             dict_data.append(dict1)
 
         return(dict_data)
+
 
     def runtimer(self):
         dict_data = self.csw()
@@ -148,6 +151,7 @@ class VFDInteger:
             dict_data.append(dict1)
 
         return(dict_data)
+        
         
     def min_freq(self):
         dict_data = self.max_freq()
