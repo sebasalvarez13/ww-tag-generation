@@ -11,16 +11,20 @@ import sqlite3
 import glob
 import pandas as pd
 from combine_csv import MergedDataFrame
-from wm_discrete import WMDIscrete
-from lt_discrete import LTDiscrete
-from lt_integer import LTInteger
-from lt_real import LTReal
-from ls_discrete import LSDiscrete
-from vfd_discrete import VFDDiscrete
-from vfd_integer import VFDInteger
-from sg_discrete import SGDiscrete
-from pafa_discrete import PAFADiscrete
+from tagcreator.discrete.wm_discrete import WMDiscrete
+from tagcreator.discrete.lt_discrete import LTDiscrete
+from tagcreator.integer.lt_integer import LTInteger
+from tagcreator.real.lt_real import LTReal
+from tagcreator.discrete.ls_discrete import LSDiscrete
+from tagcreator.discrete.vfd_discrete import VFDDiscrete
+from tagcreator.discrete.sg_discrete import SGDiscrete
+from tagcreator.discrete.pafa_discrete import PAFADiscrete
 
+from tagcreator.integer.vfd_integer import VFDInteger
+from tagcreator.integer.wm_integer import WMInteger
+from tagcreator.integer.rvg_integer import RVGInteger
+from tagcreator.integer.pkgautosys_integer import PkgAutoSysInteger
+#from tagcreator.discrete import lt_discrete
 from tags_display import tagdisplay
 
 from wm_script import WMScript
@@ -75,8 +79,11 @@ def AddModuleTags():
     first_module = request.form["first_module"]
     last_module = request.form["last_module"]
 
-    wm = WMDIscrete(int(first_module), int(last_module))
+    wm = WMDiscrete(int(first_module), int(last_module))
     wm.create_csv()
+
+    wmi = WMInteger(int(first_module), int(last_module))
+    wmi.create_csv()
 
     return render_template('index.html')
 
@@ -89,6 +96,11 @@ def AddVFDDiscreteTags():
 
     vfd = VFDDiscrete(int(first_vfd), int(last_vfd), conveyor_type, line)
     vfd.create_csv()
+
+    vfdi = VFDInteger(int(first_vfd), int(last_vfd), conveyor_type, line)
+    vfdi.create_csv()
+
+
 
     return render_template('index.html')
 
@@ -112,6 +124,30 @@ def AddPAFATags():
 
     pafad = PAFADiscrete(int(first_module), int(last_module))
     pafad.create_csv()
+
+    return render_template('index.html')
+
+
+@app.route("/pkgautosys", methods=['GET', 'POST'])
+def Addpkgautosys():
+    first_module = request.form["first_module"]
+    last_module = request.form["last_module"]
+    line = request.form["line"]
+
+    pkg = PkgAutoSysInteger(int(first_module), int(last_module), line)
+    pkg.create_csv()
+
+    return render_template('index.html')
+
+
+@app.route("/revgates", methods=['GET', 'POST'])
+def Addrevgates():
+    first_gate = request.form["first_gate"]
+    last_gate = request.form["last_gate"]
+    line = request.form["line"]
+
+    rvgi = RVGInteger(int(first_gate), int(last_gate), line)
+    rvgi.create_csv()
 
     return render_template('index.html')
 
@@ -162,5 +198,5 @@ def DisplayTags():
 def about():
     return redirect("https://www.processsolutions.com/")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80, debug=True)
