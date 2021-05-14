@@ -8,7 +8,6 @@ class WMDiscrete:
         self.last_module = last_module
         
 
-
     def features(self):
         dict_data = []
         my_dict = {
@@ -41,7 +40,6 @@ class WMDiscrete:
         return(my_dict)
 
 
-
     def hardwired_signals(self):
         dict_data = []
         signal_type = ["Infeed_Enable", "Call_For_Product", "Dump_Confirm"]
@@ -71,6 +69,7 @@ class WMDiscrete:
 
         return(dict_data)
 
+
     def motor_fault(self):
         dict_data = self.weigher_comms()
         for i in range(self.first_module, self.last_module + 1):
@@ -83,6 +82,7 @@ class WMDiscrete:
             dict_data.append(dict1)
 
         return(dict_data)   
+
 
     def create_csv(self):
         csv_file = "csv-files/discrete/module_signals.csv"
@@ -97,6 +97,7 @@ class WMDiscrete:
                     writer.writerow(data)
         except IOError as e:
             print(e)
+
 
 if __name__ == "__main__":
     wm = WeigherModule()
