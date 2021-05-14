@@ -2,3 +2,6 @@
 /csv-files/
 /window-scripts/
 /tagcreator/__pycache__/
+tagcreator/discrete/__pycache__/*
+tagcreator/integer/__pycache__/*
+tagcreator/real/__pycache__/*
