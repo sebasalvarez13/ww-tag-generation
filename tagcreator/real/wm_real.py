@@ -110,7 +110,7 @@ class WMReal:
         dict_data = self.bag_weight()
         for i in range(self.first_module, self.last_module + 1):
             dict1 = self.features()
-            dict1[":IOReal"] = "WM{}_Control.OIT_BagSpeed".format(i)
+            dict1[":IOReal"] = "WM{}_Control_OIT_BagSpeed".format(i)
             dict1["ItemName"] = "WM{}_Control.OIT_BagSpeed".format(i)
 
             dict_data.append(dict1)
@@ -122,7 +122,7 @@ class WMReal:
         dict_data = self.oit_bagspeed_target()
         for i in range(self.first_module, self.last_module + 1):
             dict1 = self.features()
-            dict1[":IOReal"] = "WM{}_Control.OIT_BagWeight".format(i)
+            dict1[":IOReal"] = "WM{}_Control_OIT_BagWeight".format(i)
             dict1["ItemName"] = "WM{}_Control.OIT_BagWeight".format(i)
 
             dict_data.append(dict1)
