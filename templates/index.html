@@ -29,9 +29,9 @@
     <div id="tagtabs" class="pagecontent">
       <button class="tablinks" onclick="openTab(event, 'tab1')">Level Transmitters</button>
       <button class="tablinks" onclick="openTab(event, 'tab2')">WM Signals</button>
-      <button class="tablinks" onclick="openTab(event, 'tab3')">VFD Discrete</button>
+      <button class="tablinks" onclick="openTab(event, 'tab3')">VFD</button>
       <button class="tablinks" onclick="openTab(event, 'tab4')">Level Sensors</button>
-      <button class="tablinks" onclick="openTab(event, 'tab5')">Slide gates</button>
+      <button class="tablinks" onclick="openTab(event, 'tab5')">Slide Gates</button>
       <button class="tablinks" onclick="openTab(event, 'tab6')">PAFA</button>
       <button class="tablinks" onclick="openTab(event, 'tab7')">PkgAutoSys</button> 
       <button class="tablinks" onclick="openTab(event, 'tab8')">Rev Gates</button>           
@@ -77,7 +77,9 @@
   <!--Tab Content-->
     <div id="tab1" class="tabcontent">
       <h3>Level Transmitters</h3>
-      <p>Discrete: Stat On, Stat Off. Integer: Setpoint, Debounce On, Debounce Off. Real: Filtered, Filter Weight Entry</p>
+      <p>Discrete: Stat On, Stat Off</p>
+      <p>Integer: Setpoint, Debounce On, Debounce Off</p>
+      <p>Real: Filtered, Filter Weight Entry</p>
       <center>
         <font color="black" size="4" style="font-family: avenir">
           <h1 style="color: DodgerBlue">Level Transmitter Tags</h1>
@@ -105,8 +107,10 @@
 
 
     <div id="tab2" class="tabcontent">
-      <h3>Weigher Module Signals</h3>
-      <p>Discrete: Infeed Enable, Call For Product, Dump Confirm and Weigher Comms.</p>
+      <h3>Weigher Module Tags</h3>
+      <p>Discrete: Infeed Enable, Call For Product, Dump Confirm and Weigher Comms, Motor Fault</p>
+      <p>Integer: Line Select, Control Inactive</p>
+      <p>Real: Bag Speed, Bag Weight, Product Needed</p>
       <center>
         <font color="black" size="4" style="font-family: avenir">
           <h1 style="color: DodgerBlue">Weigher Module Signals</h1>
@@ -124,7 +128,7 @@
 
     <div id="tab3" class="tabcontent">
       <h3>VFD Tags</h3>
-      <p>Discrete: Disconnect, Fault Disconnect, Fault Communication, Fault Device, Fault Ready and Fault FailedForward</p><br>
+      <p>Discrete: Disconnect, Fault Disconnect, Fault Communication, Fault Device, Fault Ready and Fault FailedForward</p>
       <p>Integer: CSW, RunTmr, ForwardWdgTmr, Speed Ref, Max Frequency, Min Frequency </p>
       <center>
         <font color="black" size="4" style="font-family: avenir">
@@ -182,7 +186,7 @@
     </div>
 
     <div id="tab5" class="tabcontent">
-      <h3>Slide gates</h3>
+      <h3>Slide Gates</h3>
       <p>Discrete: Auto PB, Manual Mode, Manual Close, Manual Open, Open</p>
       <center>
         <font color="black" size="4" style="font-family: avenir">
@@ -214,6 +218,7 @@
     <div id="tab6" class="tabcontent">
       <h3>PAFA Tags</h3>
       <p>Discrete: Permissive, Suspended, Green Efficiency, Yellow Efficiency, Red Efficiency</p>
+      <p>Real: CV, PV, WF Trend</p>
       <center>
         <font color="black" size="4" style="font-family: avenir">
           <h1 style="color: DodgerBlue">PAFA Tags</h1>
@@ -231,7 +236,7 @@
 
     <div id="tab7" class="tabcontent">
       <h3>PkgAutoSys Tags</h3>
-      <p>WeighMod, WeighMod_Gate</p>
+      <p>Integer: WeighMod, WeighMod_Gate</p>
       <center>
         <font color="black" size="4" style="font-family: avenir">
           <h1 style="color: DodgerBlue">PAFA Tags</h1>
@@ -251,7 +256,8 @@
     
     <div id="tab8" class="tabcontent">
       <h3>Rev Gate Tags</h3>
-      <p>CMD, Fault, Status</p>
+      <p>Integer: CMD, Fault, Status</p>
+      <p>Real: Angle Manual, MPM, Angle Stats, Product Available, Position SP, Product Hole</p>
       <center>
         <font color="black" size="4" style="font-family: avenir">
           <h1 style="color: DodgerBlue">PAFA Tags</h1>
@@ -281,12 +287,5 @@
 
   </div>
 </body>
-
-<footer>
-  <center>
-    <br>
-    <a href="/about">About Us</a>
-  </center>
-</footer>
 
 </html>
