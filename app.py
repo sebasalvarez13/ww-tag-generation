@@ -41,7 +41,7 @@ def home():
     return render_template('index.html')
 
 
-@app.route("/LTTags", methods=['GET', 'POST'])
+@app.route("/lt", methods=['GET', 'POST'])
 def AddLevelTransTags():
     first_transmitter = request.form["first_transmitter"]
     last_transmitter = request.form["last_transmitter"]
@@ -61,7 +61,7 @@ def AddLevelTransTags():
     return render_template('index.html')
 
 
-@app.route("/LSTags", methods=['GET', 'POST'])
+@app.route("/ls", methods=['GET', 'POST'])
 def AddLevelSensorTags():
     first_sensor = request.form["first_sensor"]
     last_sensor = request.form["last_sensor"]
@@ -75,7 +75,7 @@ def AddLevelSensorTags():
     return render_template('index.html')
 
 
-@app.route("/WMTags", methods=['GET', 'POST'])
+@app.route("/wm", methods=['GET', 'POST'])
 def AddModuleTags():
     first_module = request.form["first_module"]
     last_module = request.form["last_module"]
@@ -95,7 +95,7 @@ def AddModuleTags():
     return render_template('index.html')
 
 
-@app.route("/VFDDiscreteTags", methods=['GET', 'POST'])
+@app.route("/vfd", methods=['GET', 'POST'])
 def AddVFDDiscreteTags():
     first_vfd = request.form["first_vfd"]
     last_vfd = request.form["last_vfd"]
@@ -111,7 +111,7 @@ def AddVFDDiscreteTags():
     return render_template('index.html')
 
 
-@app.route("/SGTags", methods=['GET', 'POST'])
+@app.route("/sg", methods=['GET', 'POST'])
 def AddSlideGateTags():
     first_gate = request.form["first_gate"]
     last_gate = request.form["last_gate"]
@@ -125,7 +125,7 @@ def AddSlideGateTags():
     return render_template('index.html')
 
 
-@app.route("/PAFATags", methods=['GET', 'POST'])
+@app.route("/pafa", methods=['GET', 'POST'])
 def AddPAFATags():
     first_module = request.form["first_module"]
     last_module = request.form["last_module"]
@@ -166,7 +166,7 @@ def Addrevgates():
     return render_template('index.html')
 
 
-@app.route("/WMScripts", methods=['GET', 'POST'])
+@app.route("/wmscripts", methods=['GET', 'POST'])
 def AddWMWindowScripts():
     first_module = request.form["first_module"]
     last_module = request.form["last_module"]
@@ -187,7 +187,7 @@ def AddWMWindowScripts():
     return render_template('index.html')
 
 
-@app.route("/AppendTags", methods = ["GET", "POST"])
+@app.route("/appendtags", methods = ["GET", "POST"])
 def AppendTags():
     folders = ["discrete", "integer", "real"]
     #creates a csv file for each type of tag: integer, discrete, real, etc
@@ -203,7 +203,7 @@ def AppendTags():
     return render_template("output.html")
 
 
-@app.route("/DisplayTags", methods = ["GET", "POST"])
+@app.route("/displaytags", methods = ["GET", "POST"])
 def DisplayTags():
     tagdisplay()
     return render_template("tagstable.html")    
