@@ -50,7 +50,7 @@
       <center>
         <font color="black" size="4" style="font-family: avenir">
           <h1 style="color: DodgerBlue">WM Window Script</h1>
-            <form action="/WMScripts" autocomplete="off" method = "POST" enctype="multipart/form-data">
+            <form action="/wmscripts" autocomplete="off" method = "POST" enctype="multipart/form-data">
                 First Module:<br> <input type="number" name="first_module" ><br><br>
                 Last Module:<br> <input type="number" name="last_module" ><br><br>
                 Transmitter Number:<br> <input type="number" name="transmitter_number" ><br><br>
@@ -83,7 +83,7 @@
       <center>
         <font color="black" size="4" style="font-family: avenir">
           <h1 style="color: DodgerBlue">Level Transmitter Tags</h1>
-            <form action="/LTTags" autocomplete="off" method = "POST" enctype="multipart/form-data">
+            <form action="/lt" autocomplete="off" method = "POST" enctype="multipart/form-data">
                 First Transmitter:<br> <input type="number" name="first_transmitter" ><br><br>
                 Last Transmitter:<br> <input type="number" name="last_transmitter" ><br><br>
                 Transmitter Number:<br> <input type="number" name="transmitter_number" ><br><br>
@@ -115,7 +115,7 @@
         <font color="black" size="4" style="font-family: avenir">
           <h1 style="color: DodgerBlue">Weigher Module Signals</h1>
           <!--body bgcolor = "blue"-->
-            <form action="/WMTags" autocomplete="on" method = "POST" enctype="multipart/form-data">
+            <form action="/wm" autocomplete="on" method = "POST" enctype="multipart/form-data">
               First Module:<br> <input type="number" name="first_module" ><br><br>
               Last Module:<br> <input type="number" name="last_module" ><br><br>
               <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
@@ -134,7 +134,7 @@
         <font color="black" size="4" style="font-family: avenir">
           <h1 style="color: DodgerBlue">VFD Tags</h1>
           <!--body bgcolor="white"-->
-            <form action="/VFDTags" autocomplete="on" method = "POST" enctype="multipart/form-data">
+            <form action="/vfd" autocomplete="on" method = "POST" enctype="multipart/form-data">
                 First VFD:<br> <input type="number" name="first_vfd" ><br><br>
                 Last VFD:<br> <input type="number" name="last_vfd" ><br><br>
                 Conveyor Type:<br>
@@ -163,7 +163,7 @@
         <font color="black" size="4" style="font-family: avenir">
           <h1 style="color: DodgerBlue">Level Sensor Tags</h1>
           <!--body bgcolor="white"-->
-            <form action="/LSTags" autocomplete="on" method = "POST" enctype="multipart/form-data">
+            <form action="/ls" autocomplete="on" method = "POST" enctype="multipart/form-data">
                 First Sensor:<br> <input type="number" name="first_sensor" ><br><br>
                 Last Sensor:<br> <input type="number" name="last_sensor" ><br><br>
                 Sensor Number:<br> <input type="number" name="sensor_number" ><br><br>
@@ -191,7 +191,7 @@
       <center>
         <font color="black" size="4" style="font-family: avenir">
           <h1 style="color: DodgerBlue">Slide gates Tags</h1>
-            <form action="/LTTags" autocomplete="off" method = "POST" enctype="multipart/form-data">
+            <form action="/lt" autocomplete="off" method = "POST" enctype="multipart/form-data">
                 First Gate:<br> <input type="number" name="first_gate" ><br><br>
                 Last Gate:<br> <input type="number" name="last_gate" ><br><br>
                 Gate Number:<br> <input type="number" name="gate_number" ><br><br>
@@ -223,7 +223,7 @@
         <font color="black" size="4" style="font-family: avenir">
           <h1 style="color: DodgerBlue">PAFA Tags</h1>
           <!--body bgcolor = "blue"-->
-            <form action="/PAFATags" autocomplete="on" method = "POST" enctype="multipart/form-data">
+            <form action="/pafa" autocomplete="on" method = "POST" enctype="multipart/form-data">
               First Module:<br> <input type="number" name="first_module" ><br><br>
               Last Module:<br> <input type="number" name="last_module" ><br><br>
               <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
@@ -278,7 +278,7 @@
     <div id="tab9" class="tabcontent">
       <h3>Append CSV Files</h3>
       <p>This will combine all the created tags into a single csv file that you can DB load.</p>
-      <form method="POST" action="/AppendTags">
+      <form method="POST" action="/appendtags">
         <center>
           <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;" value= "append_tags">APPEND TAGS</button>
         </center>
