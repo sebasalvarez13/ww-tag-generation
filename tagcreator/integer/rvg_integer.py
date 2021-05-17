@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import csv
-#from website_example import first_transmitter, last_transmitter, gate_num, line
 
 class RVGInteger:
     def __init__(self, first_gate, last_gate, line):
