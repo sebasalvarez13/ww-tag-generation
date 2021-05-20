@@ -36,7 +36,7 @@ class RVGInteger:
             "LoAlarmState": "Off",
             "LoAlarmValue": 0,
             "LoAlarmPri": 1,
-            "HiAlarmState": "Off",
+            "HiAlarmState": "On",
             "HiAlarmValue": 0,
             "HiAlarmPri": 1,
             "HiHiAlarmState":  "Off",
