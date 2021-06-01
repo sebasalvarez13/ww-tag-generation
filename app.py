@@ -22,6 +22,7 @@ from tagcreator.integer.vfd_integer import VFDInteger
 from tagcreator.integer.wm_integer import WMInteger
 from tagcreator.integer.rvg_integer import RVGInteger
 from tagcreator.integer.pkgautosys_integer import PkgAutoSysInteger
+from tagcreator.integer.afa_integer import AFAInteger
 
 from tagcreator.real.lt_real import LTReal
 from tagcreator.real.pafa_real import PAFAReal
@@ -162,6 +163,16 @@ def Addrevgates():
 
     rvgr = RVGReal(int(first_gate), int(last_gate), line)
     rvgr.create_csv()
+
+    return render_template('index.html')
+
+
+@app.route("/afa", methods=['GET', 'POST'])
+def Addafa():
+    line = request.form["line"]
+
+    afai = AFAInteger(line)
+    afai.create_csv()
 
     return render_template('index.html')
 
