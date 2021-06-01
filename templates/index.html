@@ -35,7 +35,8 @@
       <button class="tablinks" onclick="openTab(event, 'tab6')">PAFA</button>
       <button class="tablinks" onclick="openTab(event, 'tab7')">PkgAutoSys</button> 
       <button class="tablinks" onclick="openTab(event, 'tab8')">Rev Gates</button>           
-      <button class="tablinks" onclick="openTab(event, 'tab9')">Append CSV Files</button>
+      <button class="tablinks" onclick="openTab(event, 'tab9')">AFA</button>
+      <button class="tablinks" onclick="openTab(event, 'tab10')">Append CSV Files</button>
     </div>
 
     <div id="scripttabs" class="pagecontent">
@@ -272,10 +273,29 @@
           </body>
         </font>
       </center>
+    </div>
+    
+
+    <div id="tab9" class="tabcontent">
+      <h3>AFA Tags</h3>
+      <p>Integer: AccumFull Suspend, D1 Off Debounce/Suspend, MaxSpd Debounce/Suspend, Recir Time, Update Rate</p>
+      <p>Real: Coarse, Fine, CV, KD, KI, KP, M, Trends, SPN, PA</p>
+      <center>
+        <font color="black" size="4" style="font-family: avenir">
+          <h1 style="color: DodgerBlue">AFA Tags</h1>
+          <!--body bgcolor = "blue"-->
+            <form action="/afa" autocomplete="on" method = "POST" enctype="multipart/form-data">
+              Line:<br> <input type="text" name="line"><br><br>
+
+              <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
+            </form>
+          </body>
+        </font>
+      </center>
     </div>  
 
 
-    <div id="tab9" class="tabcontent">
+    <div id="tab10" class="tabcontent">
       <h3>Append CSV Files</h3>
       <p>This will combine all the created tags into a single csv file that you can DB load.</p>
       <form method="POST" action="/appendtags">
