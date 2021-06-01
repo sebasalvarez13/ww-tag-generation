@@ -108,7 +108,7 @@ class AFAInteger:
 
 
     def d1_off_suspend(self):
-        dict_data = self.accum_full_suspend()
+        dict_data = self.d1_off_debounce()
         dict1 = self.features()
         dict1[":IOInt"] = "Line{}_AFA_D1_Off_Suspend".format(self.line)
         dict1["ItemName"] = "Line{}_AFA.D1_Off_Suspend.PRE".format(self.line)
