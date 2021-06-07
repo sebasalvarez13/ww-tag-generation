@@ -2,9 +2,11 @@
 <!-- Tab Links -->
 <html>
 <head>
-    <meta charset="utf-8" />    
-    <link rel = "stylesheet" href = "static/tabs.css" type = "text/css"></link>
-    <link rel = "stylesheet" href = "static/sidebar.css" type = "text/css"></link>
+    <meta charset="utf-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">    
+
+    <link rel = "stylesheet" href = "/static/index.css" type = "text/css"></link>
+
 
 <center>
   <h1 style="color: DodgerBlue">Wonderware Tag Generator</h1>
@@ -13,289 +15,246 @@
 </head>
 
 <body>
-  <script type = "text/javascript" src="/static/tabs.js"></script>
-  <script type = "text/javascript" src="/static/sidebar.js"></script>
 
-  <!--script src="/static/tabs.js" charset="utf-8"></script-->
-  <div class="sidenav">
-    <button class="pagelinks" onclick="openPage(event, 'tagtabs')">Tags</button><br>
-    <button class="pagelinks" onclick="openPage(event, 'scripttabs')">Scripts</button><br>
-    <button href="/about">About</button>
-  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
 
-  <!--main contains the tabs for the tags and the tab content-->
-  <div class="main">
+      <a class="navbar-brand" href="#">Tags</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div id="tagtabs" class="pagecontent">
-      <button class="tablinks" onclick="openTab(event, 'tab1')">Level Transmitters</button>
-      <button class="tablinks" onclick="openTab(event, 'tab2')">WM Signals</button>
-      <button class="tablinks" onclick="openTab(event, 'tab3')">VFD</button>
-      <button class="tablinks" onclick="openTab(event, 'tab4')">Level Sensors</button>
-      <button class="tablinks" onclick="openTab(event, 'tab5')">Slide Gates</button>
-      <button class="tablinks" onclick="openTab(event, 'tab6')">PAFA</button>
-      <button class="tablinks" onclick="openTab(event, 'tab7')">PkgAutoSys</button> 
-      <button class="tablinks" onclick="openTab(event, 'tab8')">Rev Gates</button>           
-      <button class="tablinks" onclick="openTab(event, 'tab9')">AFA</button>
-      <button class="tablinks" onclick="openTab(event, 'tab10')">Append CSV Files</button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!--ul class="navbar-nav me-auto mb-2 mb-lg-0"-->
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-lt-tab" data-bs-toggle="pill" data-bs-target="#pills-lt" type="button" role="tab" aria-controls="pills-lt" aria-selected="true">Level Transmitters</button>
+          </li>
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-wm-tab" data-bs-toggle="pill" data-bs-target="#pills-wm" type="button" role="tab" aria-controls="pills-wm" aria-selected="false">WM Signals</button>
+          </li>
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-vfd-tab" data-bs-toggle="pill" data-bs-target="#pills-vfd" type="button" role="tab" aria-controls="pills-vfd" aria-selected="false">VFD</button>
+          </li>
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-ls-tab" data-bs-toggle="pill" data-bs-target="#pills-ls" type="button" role="tab" aria-controls="pills-ls" aria-selected="false">Level Sensors</button>
+          </li>
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-sg-tab" data-bs-toggle="pill" data-bs-target="#pills-sg" type="button" role="tab" aria-controls="pills-sg" aria-selected="false">Slide Gates</button>
+          </li>
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-pafa-tab" data-bs-toggle="pill" data-bs-target="#pills-pafa" type="button" role="tab" aria-controls="pills-pafa" aria-selected="false">PAFA</button>
+          </li>
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-pkgautosys-tab" data-bs-toggle="pill" data-bs-target="#pills-pkgautosys" type="button" role="tab" aria-controls="pills-pkgautosys" aria-selected="false">PkgAutoSys</button>
+          </li>
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-revgates-tab" data-bs-toggle="pill" data-bs-target="#pills-revgates" type="button" role="tab" aria-controls="pills-revgates" aria-selected="false">Rev Gates</button>
+          </li>
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-afa-tab" data-bs-toggle="pill" data-bs-target="#pills-afa" type="button" role="tab" aria-controls="pills-afa" aria-selected="false">AFA</button>
+          </li>
+
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-append-tab" data-bs-toggle="pill" data-bs-target="#pills-append" type="button" role="tab" aria-controls="pills-append" aria-selected="false">Append CSV</button>
+          </li>
+
+      </div>
     </div>
+  </nav>
 
-    <div id="scripttabs" class="pagecontent">
-      <button class="tablinks" onclick="openTab(event, 'script_tab1')">WM Window Script</button>
-    </div>
+  <div class="tab-content" id="pills-tabContent">
 
-
-    
-    <div id="script_tab1" class="tabcontent">
-      <h3>WM Window Script</h3>
-      <p>Distribution, WF, Weigher, PAFA</p>
+    <div class="tab-pane fade show active" id="pills-lt" role="tabpanel" aria-labelledby="pills-lt-tab">  
+      <h3>Level Transmitters Tags</h3>
+      <p>Discrete: Stat On, Stat Off | Integer: Setpoint, Debounce On, Debounce Off | Real: Filtered, Filter Weight Entry</p>
       <center>
-        <font color="black" size="4" style="font-family: avenir">
-          <h1 style="color: DodgerBlue">WM Window Script</h1>
-            <form action="/wmscripts" autocomplete="off" method = "POST" enctype="multipart/form-data">
-                First Module:<br> <input type="number" name="first_module" ><br><br>
-                Last Module:<br> <input type="number" name="last_module" ><br><br>
-                Transmitter Number:<br> <input type="number" name="transmitter_number" ><br><br>
-                Conveyor Type:<br>
-                  <select name="conveyor_type">
-                    <option value="Accumulation">Accumulation</option>
-                    <option value="Transfer">Transfer</option>
-                    <option value="Distribution">Distribution</option>
-                    <option value="Weigher Feeder">Weigher Feeder</option>
-                    <option value="Modulation">Modulation</option>
-                  </select>
-                <br><br>
-                Line:<br> <input type="text" name="line"><br><br>
-  
-                <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE SCRIPTS</button>
-            </form>
-          </body>
-        </font>
-      </center>
-    </div>
-
-
-
-  <!--Tab Content-->
-    <div id="tab1" class="tabcontent">
-      <h3>Level Transmitters</h3>
-      <p>Discrete: Stat On, Stat Off</p>
-      <p>Integer: Setpoint, Debounce On, Debounce Off</p>
-      <p>Real: Filtered, Filter Weight Entry</p>
-      <center>
-        <font color="black" size="4" style="font-family: avenir">
-          <h1 style="color: DodgerBlue">Level Transmitter Tags</h1>
+        <!--font color="black" size="4" style="font-family: avenir"-->
+          <h1 style="color: DodgerBlue">Level Transmitter</h1>
             <form action="/lt" autocomplete="off" method = "POST" enctype="multipart/form-data">
-                First Transmitter:<br> <input type="number" name="first_transmitter" ><br><br>
-                Last Transmitter:<br> <input type="number" name="last_transmitter" ><br><br>
-                Transmitter Number:<br> <input type="number" name="transmitter_number" ><br><br>
+                First Transmitter:<br> <input type="number" class="form-control" name="first_transmitter" ><br>
+                Last Transmitter:<br> <input type="number" class="form-control" name="last_transmitter" ><br>
+                Transmitter Number:<br> <input type="number" class="form-control" name="transmitter_number" ><br>
                 Conveyor Type:<br>
-                  <select name="conveyor_type">
+                  <select class="form-select" aria-label="Default select example" name="conveyor_type">
                     <option value="Accumulation">Accumulation</option>
                     <option value="Transfer">Transfer</option>
                     <option value="Distribution">Distribution</option>
                     <option value="Weigher Feeder">Weigher Feeder</option>
                     <option value="Modulation">Modulation</option>
                   </select>
-                <br><br>
-                Line:<br> <input type="text" name="line"><br><br>
+                <br>
+                Line:<br> <input type="text" class="form-control" name="line"><br>
 
                 <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
             </form>
           </body>
-        </font>
       </center>
     </div>
-
-
-    <div id="tab2" class="tabcontent">
+      
+    <div class="tab-pane fade" id="pills-wm" role="tabpanel" aria-labelledby="pills-wm-tab">
       <h3>Weigher Module Tags</h3>
-      <p>Discrete: Infeed Enable, Call For Product, Dump Confirm and Weigher Comms, Motor Fault</p>
-      <p>Integer: Line Select, Control Inactive</p>
-      <p>Real: Bag Speed, Bag Weight, Product Needed</p>
+      <p>Discrete: Infeed Enable, Call For Product, Dump Confirm and Weigher Comms, Motor Fault | Integer: Line Select, Control Inactive | Real: Bag Speed, Bag Weight, Product Needed</p>
       <center>
-        <font color="black" size="4" style="font-family: avenir">
-          <h1 style="color: DodgerBlue">Weigher Module Signals</h1>
-          <!--body bgcolor = "blue"-->
+          <h1 style="color: DodgerBlue">Weigher Modules</h1>
             <form action="/wm" autocomplete="on" method = "POST" enctype="multipart/form-data">
-              First Module:<br> <input type="number" name="first_module" ><br><br>
-              Last Module:<br> <input type="number" name="last_module" ><br><br>
+              First Module:<br> <input type="number" class="form-control" name="first_module" ><br>
+              Last Module:<br> <input type="number" class="form-control" name="last_module" ><br>
               <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
             </form>
           </body>
-        </font>
       </center>
     </div>
 
-
-    <div id="tab3" class="tabcontent">
+    <div class="tab-pane fade" id="pills-vfd" role="tabpanel" aria-labelledby="pills-vfd-tab">
       <h3>VFD Tags</h3>
-      <p>Discrete: Disconnect, Fault Disconnect, Fault Communication, Fault Device, Fault Ready and Fault FailedForward</p>
-      <p>Integer: CSW, RunTmr, ForwardWdgTmr, Speed Ref, Max Frequency, Min Frequency </p>
+      <p>Discrete: Disconnect, Fault Disconnect, Fault Communication, Fault Device, Fault Ready and Fault FailedForward | Integer: CSW, RunTmr, ForwardWdgTmr, Speed Ref, Max Frequency, Min Frequency</p>
       <center>
-        <font color="black" size="4" style="font-family: avenir">
-          <h1 style="color: DodgerBlue">VFD Tags</h1>
+          <h1 style="color: DodgerBlue">VFD</h1>
           <!--body bgcolor="white"-->
             <form action="/vfd" autocomplete="on" method = "POST" enctype="multipart/form-data">
-                First VFD:<br> <input type="number" name="first_vfd" ><br><br>
-                Last VFD:<br> <input type="number" name="last_vfd" ><br><br>
+                First VFD:<br> <input type="number" class="form-control" name="first_vfd" ><br>
+                Last VFD:<br> <input type="number" class="form-control" name="last_vfd" ><br>
                 Conveyor Type:<br>
-                  <select name="conveyor_type">
+                  <select class="form-select" aria-label="Default select example" name="conveyor_type">
                     <option value="Accumulation">Accumulation</option>
                     <option value="Transfer">Transfer</option>
                     <option value="Distribution">Distribution</option>
                     <option value="Weigher Feeder">Weigher Feeder</option>
                     <option value="Modulation">Modulation</option>
                   </select>
-                <br><br>
-                Line:<br> <input type="text" name="line"><br><br>
+                <br>
+                Line:<br> <input type="text" class="form-control" name="line"><br>
 
                 <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
             </form>
           </body>
-        </font>
       </center>
-    </div>
 
+    </div>   
 
-    <div id="tab4" class="tabcontent">
+    <div class="tab-pane fade" id="pills-ls" role="tabpanel" aria-labelledby="pills-ls-tab">
       <h3>Level Sensors</h3>
-      <p>Discrete: Stat On, Stat Off. Integer: Debounce On, Debounce Off.</p>
+      <p>Discrete: Stat On, Stat Off | Integer: Debounce On, Debounce Off.</p>
       <center>
-        <font color="black" size="4" style="font-family: avenir">
-          <h1 style="color: DodgerBlue">Level Sensor Tags</h1>
-          <!--body bgcolor="white"-->
+          <h1 style="color: DodgerBlue">Level Sensor</h1>
             <form action="/ls" autocomplete="on" method = "POST" enctype="multipart/form-data">
-                First Sensor:<br> <input type="number" name="first_sensor" ><br><br>
-                Last Sensor:<br> <input type="number" name="last_sensor" ><br><br>
-                Sensor Number:<br> <input type="number" name="sensor_number" ><br><br>
+                First Sensor:<br> <input type="number" class="form-control" name="first_sensor"><br>
+                Last Sensor:<br> <input type="number" class="form-control" name="last_sensor"><br>
+                Sensor Number:<br> <input type="number" class="form-control" name="sensor_number"><br>
                 Conveyor Type:<br>
-                  <select name="conveyor_type">
+                  <select class="form-select" aria-label="Default select example" name="conveyor_type">
                     <option value="Accumulation">Accumulation</option>
                     <option value="Transfer">Transfer</option>
                     <option value="Distribution">Distribution</option>
                     <option value="Weigher Feeder">Weigher Feeder</option>
                     <option value="Modulation">Modulation</option>
                   </select>
-                <br><br>
-                Line:<br> <input type="text" name="line"><br><br>
+                <br>
+                Line:<br> <input type="text" class="form-control" name="line"><br>
 
                 <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
             </form>
           </body>
-        </font>
       </center>
     </div>
 
-    <div id="tab5" class="tabcontent">
+    <div class="tab-pane fade" id="pills-sg" role="tabpanel" aria-labelledby="pills-sg-tab">
       <h3>Slide Gates</h3>
       <p>Discrete: Auto PB, Manual Mode, Manual Close, Manual Open, Open</p>
       <center>
-        <font color="black" size="4" style="font-family: avenir">
-          <h1 style="color: DodgerBlue">Slide Gates Tags</h1>
+          <h1 style="color: DodgerBlue">Slide Gates</h1>
             <form action="/sg" autocomplete="off" method = "POST" enctype="multipart/form-data">
-                First Gate:<br> <input type="number" name="first_gate" ><br><br>
-                Last Gate:<br> <input type="number" name="last_gate" ><br><br>
-                Gate Number:<br> <input type="number" name="gate_number" ><br><br>
+                First Gate:<br> <input type="number" class="form-control" name="first_gate" ><br>
+                Last Gate:<br> <input type="number" class="form-control" name="last_gate" ><br>
+                Gate Number:<br> <input type="number" class="form-control" name="gate_number" ><br>
                 Conveyor Type:<br>
-                  <select name="conveyor_type">
+                  <select class="form-select" aria-label="Default select example" name="conveyor_type">
                     <option value="Accumulation">Accumulation</option>
                     <option value="Transfer">Transfer</option>
                     <option value="Distribution">Distribution</option>
                     <option value="Weigher Feeder">Weigher Feeder</option>
                     <option value="Modulation">Modulation</option>
                   </select>
-                <!--/div-->
-                <br><br>
-                Line:<br> <input type="text" name="line"><br><br>
+                <br>
+                Line:<br> <input type="text" class="form-control" name="line"><br>
 
                 <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
             </form>
           </body>
-        </font>
       </center>
     </div>
 
-
-    <div id="tab6" class="tabcontent">
+    <div class="tab-pane fade" id="pills-pafa" role="tabpanel" aria-labelledby="pills-pafa-tab">
       <h3>PAFA Tags</h3>
-      <p>Discrete: Permissive, Suspended, Green Efficiency, Yellow Efficiency, Red Efficiency</p>
-      <p>Real: CV, PV, WF Trend</p>
+      <p>Discrete: Permissive, Suspended, Green Efficiency, Yellow Efficiency, Red Efficiency | Real: CV, PV, WF Trend</p>
       <center>
-        <font color="black" size="4" style="font-family: avenir">
-          <h1 style="color: DodgerBlue">PAFA Tags</h1>
-          <!--body bgcolor = "blue"-->
+          <h1 style="color: DodgerBlue">PAFA</h1>
             <form action="/pafa" autocomplete="on" method = "POST" enctype="multipart/form-data">
-              First Module:<br> <input type="number" name="first_module" ><br><br>
-              Last Module:<br> <input type="number" name="last_module" ><br><br>
+              First Module:<br> <input type="number" class="form-control name="first_module" ><br>
+              Last Module:<br> <input type="number" class="form-control name="last_module" ><br>
               <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
             </form>
           </body>
-        </font>
-      </center>
-    </div>
-
-
-    <div id="tab7" class="tabcontent">
-      <h3>PkgAutoSys Tags</h3>
-      <p>Integer: WeighMod, WeighMod_Gate</p>
-      <center>
-        <font color="black" size="4" style="font-family: avenir">
-          <h1 style="color: DodgerBlue">PkgAutoSys Tags</h1>
-          <!--body bgcolor = "blue"-->
-            <form action="/pkgautosys" autocomplete="on" method = "POST" enctype="multipart/form-data">
-              First Module:<br> <input type="number" name="first_module" ><br><br>
-              Last Module:<br> <input type="number" name="last_module" ><br><br>
-              Line:<br> <input type="text" name="line"><br><br>
-
-              <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
-            </form>
-          </body>
-        </font>
-      </center>
-    </div> 
-    
-    
-    <div id="tab8" class="tabcontent">
-      <h3>Rev Gate Tags</h3>
-      <p>Integer: CMD, Fault, Status</p>
-      <p>Real: Angle Manual, MPM, Angle Stats, Product Available, Position SP, Product Hole</p>
-      <center>
-        <font color="black" size="4" style="font-family: avenir">
-          <h1 style="color: DodgerBlue">Rev Gates Tags</h1>
-          <!--body bgcolor = "blue"-->
-            <form action="/revgates" autocomplete="on" method = "POST" enctype="multipart/form-data">
-              First Gate:<br> <input type="number" name="first_gate" ><br><br>
-              Last Gate:<br> <input type="number" name="last_gate" ><br><br>
-              Line:<br> <input type="text" name="line"><br><br>
-
-              <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
-            </form>
-          </body>
-        </font>
-      </center>
-    </div>
-    
-
-    <div id="tab9" class="tabcontent">
-      <h3>AFA Tags</h3>
-      <p>Integer: AccumFull Suspend, D1 Off Debounce/Suspend, MaxSpd Debounce/Suspend, Recir Time, Update Rate</p>
-      <p>Real: Coarse, Fine, CV, KD, KI, KP, M, Trends, SPN, PA</p>
-      <center>
-        <font color="black" size="4" style="font-family: avenir">
-          <h1 style="color: DodgerBlue">AFA Tags</h1>
-          <!--body bgcolor = "blue"-->
-            <form action="/afa" autocomplete="on" method = "POST" enctype="multipart/form-data">
-              Line:<br> <input type="text" name="line"><br><br>
-
-              <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
-            </form>
-          </body>
-        </font>
       </center>
     </div>  
 
+    <div class="tab-pane fade" id="pills-pkgautosys" role="tabpanel" aria-labelledby="pills-pkgautosys-tab">
+      <h3>PkgAutoSys Tags</h3>
+      <p>Integer: WeighMod, WeighMod_Gate</p>
+      <center>
+          <h1 style="color: DodgerBlue">PkgAutoSys</h1>
+            <form action="/pkgautosys" autocomplete="on" method = "POST" enctype="multipart/form-data">
+              First Module:<br> <input type="number" class="form-control name="first_module" ><br>
+              Last Module:<br> <input type="number" class="form-control name="last_module" ><br>
+              Line:<br> <input type="text" class="form-control name="line"><br>
 
-    <div id="tab10" class="tabcontent">
+              <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
+            </form>
+          </body>
+      </center>      
+    </div>  
+
+    <div class="tab-pane fade" id="pills-revgates" role="tabpanel" aria-labelledby="pills-revgates-tab">
+      <h3>Rev Gate Tags</h3>
+      <p>Integer: CMD, Fault, Status | Real: Angle Manual, MPM, Angle Stats, Product Available, Position SP, Product Hole</p>
+      <center>
+          <h1 style="color: DodgerBlue">Rev Gates Tags</h1>
+            <form action="/revgates" autocomplete="on" method = "POST" enctype="multipart/form-data">
+              First Gate:<br> <input type="number" class="form-control name="first_gate" ><br>
+              Last Gate:<br> <input type="number" class="form-control name="last_gate" ><br>
+              Line:<br> <input type="text" class="form-control name="line"><br>
+
+              <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
+            </form>
+          </body>
+      </center>      
+    </div>  
+
+    <div class="tab-pane fade" id="pills-afa" role="tabpanel" aria-labelledby="pills-afa-tab">
+      <h3>AFA Tags</h3>
+      <p>Integer: AccumFull Suspend, D1 Off Debounce/Suspend, MaxSpd Debounce/Suspend, Recir Time, Update Rate | Real: Coarse, Fine, CV, KD, KI, KP, M, Trends, SPN, PA</p>
+      <center>
+          <h1 style="color: DodgerBlue">AFA Tags</h1>
+            <form action="/afa" autocomplete="on" method = "POST" enctype="multipart/form-data">
+              Line:<br> <input type="text" class="form-control name="line"><br>
+
+              <button type="submit" style="background: blue; height: 45px; width: 200px; color: white; size: 5; font: oblique;">CREATE TAGS</button>
+            </form>
+          </body>
+      </center>
+    </div>  
+
+    <div class="tab-pane fade" id="pills-append" role="tabpanel" aria-labelledby="pills-append-tab">
       <h3>Append CSV Files</h3>
       <p>This will combine all the created tags into a single csv file that you can DB load.</p>
       <form method="POST" action="/appendtags">
@@ -304,8 +263,10 @@
         </center>
       </form>
     </div>
-
+    
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 
 </html>
