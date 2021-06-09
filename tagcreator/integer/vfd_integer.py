@@ -131,7 +131,7 @@ class VFDInteger:
         for i in range(self.first_vfd, self.last_vfd + 1):
             dict1 = self.features()
             dict1[":IOInt"] = "M{}{}{}_SpeedRef_SP".format(self.conveyor_type_letter, i, self.line)
-            dict1["ItemName"] = "M{}{}{}.SpeedRef_SP_Entry".format(self.conveyor_type_letter, i, self.line)
+            dict1["ItemName"] = "M{}{}{}_SpeedRef_SP_Entry".format(self.conveyor_type_letter, i, self.line)
 
             dict_data.append(dict1)
 
