@@ -103,7 +103,7 @@ class RVGReal:
         for i in range(self.first_gate, self.last_gate + 1):
             dict1 = self.features()
             dict1[":IOReal"] = "WM{}_RVG{}M_MPM".format(i, self.line_number)
-            dict1["ItemName"] = "WM{}_RVG{}M.MPM".format(i, self.line_number)
+            dict1["ItemName"] = "WM{}_RVG{}MREV.MPM".format(i, self.line_number)
 
             dict_data.append(dict1)
 
