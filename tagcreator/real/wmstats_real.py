@@ -172,7 +172,7 @@ class WMStatsReal:
         for i in range(self.first_module, self.last_module + 1):
             dict1 = self.features()
             dict1[":IOReal"] = "WM{}_ModuleStats_DC_Percent".format(i)
-            dict1["ItemName"] = "WM{}_ModuleStats.StatsDutyCycle".format(i)
+            dict1["ItemName"] = "WM{}_ModuleStats.StatsDutyCyclePercent".format(i)
             dict1["MinRaw"] = 0
             dict1["MaxRaw"] = 100
             dict1["MinEU"] = 0
