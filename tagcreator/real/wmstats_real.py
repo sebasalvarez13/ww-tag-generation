@@ -104,7 +104,7 @@ class WMStatsReal:
         for i in range(self.first_module, self.last_module + 1):
             dict1 = self.features()
             dict1[":IOReal"] = "WM{}_ModuleStats_BPM".format(i)
-            dict1["ItemName"] = "WM{}_ModuleStats.StatsBagsPerMinute".format(i)
+            dict1["ItemName"] = "WM{}_PAFA.Actual_Bagspeed".format(i)
             dict1["MinRaw"] = -32768
             dict1["MaxRaw"] = 32767
             dict1["MinEU"] = -32768
@@ -137,7 +137,7 @@ class WMStatsReal:
         for i in range(self.first_module, self.last_module + 1):
             dict1 = self.features()
             dict1[":IOReal"] = "WM{}_ModuleStats_BPM_Percent".format(i)
-            dict1["ItemName"] = "WM{}_ModuleStats.StatsAFABagsPerMinutePercent".format(i)
+            dict1["ItemName"] = "WM{}_PAFA.Percent_Actual_Bagspeed".format(i)
             dict1["MinRaw"] = 0
             dict1["MaxRaw"] = 100
             dict1["MinEU"] = 0
@@ -172,7 +172,7 @@ class WMStatsReal:
         for i in range(self.first_module, self.last_module + 1):
             dict1 = self.features()
             dict1[":IOReal"] = "WM{}_ModuleStats_DC_Percent".format(i)
-            dict1["ItemName"] = "WM{}_ModuleStats.StatsDutyCyclePercent".format(i)
+            dict1["ItemName"] = "WM{}_PAFA.Percent_Actual_DutyCycle".format(i)
             dict1["MinRaw"] = 0
             dict1["MaxRaw"] = 100
             dict1["MinEU"] = 0
