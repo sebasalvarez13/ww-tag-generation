@@ -33,7 +33,8 @@ from tagcreator.real.wmstats_real import WMStatsReal
 from tagcreator.indirect.inf_drives_indirect_analog import InfDrivesIndirectAnalog
 
 from tags_display import tagdisplay
-from wm_script import WMScript
+from scriptcreator.wm_script import WMScript
+from scriptcreator.eng_inf_drive_speeds_script import EngInfDriveSpeeds
 from combine_csv import MergedDataFrame
 
 
@@ -113,6 +114,9 @@ def AddVFDDiscreteTags():
 
     vfd_ind_analog = InfDrivesIndirectAnalog(int(first_vfd), int(last_vfd), conveyor_type, line)
     vfd_ind_analog.create_csv()
+
+    inf_drive_speeds = EngInfDriveSpeeds(int(first_vfd), int(last_vfd), conveyor_type, line)
+    inf_drive_speeds.drive_speeds()
 
     return render_template('index.html')
 
