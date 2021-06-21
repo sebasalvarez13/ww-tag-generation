@@ -66,15 +66,5 @@ class EngInfDriveSpeeds:
 if __name__ == "__main__":
     first_vfd = 1
     last_vfd = 3
-    wm = WMScript(first_vfd, last_vfd, "Transfer", "A")
-    """
-    for i in range(first_module, (last_module + 1)):
-        module = i
-        str1 = wm.distribution(module)
-        str2 = wm.weigher_feeder(module)
-        str3 = wm.weigher(module)
-        str4 = wm.pafa(module)
-        str5 = wm.misc(module)
-        wm.create_script(module, str1, str2, str3, str4, str5)
-    """
+    wm = EngInfDriveSpeeds(first_vfd, last_vfd, "Transfer", "A")
     wm.speed_ref()
