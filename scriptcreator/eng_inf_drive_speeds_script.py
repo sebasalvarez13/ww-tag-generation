@@ -51,7 +51,30 @@ class EngInfDriveSpeeds:
 
                 str1 = (line1 + line2)
                 self.create_script(str1)
-        
+
+
+    def text(self):
+        accum_speeds = {"Transfer": "Ts", "Discharge": "Ds"}
+        mod_speeds = {"Hi": "Max", "Lo": "Min"}
+        line1 = ""
+        line2 = ""
+   
+        if self.conveyor_type == "Modulation":
+            for i in range(self.first_vfd, self.last_vfd + 1):
+                for j in mod_speeds.keys():
+                    line1 = "GenericEngInfDs{}{}.Text = ".format(self.conveyor_type_short, i, j)
+                    line2 = "{} Conveyor M{}{}{} {} {} Speed.Text;".format(self.conveyor_type, self.conveyor_type_letter, i, self.line, j, mod_speeds[j])
+
+                    str1 = (line1 + line2)
+                    self.create_script(str1)
+             
+        else:
+            for i in range(self.first_vfd, self.last_vfd + 1):
+                line1 = "GenericEngInfDs{}{}.Text = ".format(self.conveyor_type_short, i)
+                line2 = "{} Conveyor M{}{}{}".format(self.conveyor_type, self.conveyor_type_letter, i, self.line)
+
+                str1 = (line1 + line2)
+                self.create_script(str1)
 
     def create_script(self, str1):
         script_file = "window-scripts/script_infeed_drive_speeds.txt"
