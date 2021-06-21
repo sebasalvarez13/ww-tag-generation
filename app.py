@@ -117,6 +117,7 @@ def AddVFDDiscreteTags():
 
     inf_drive_speeds = EngInfDriveSpeeds(int(first_vfd), int(last_vfd), conveyor_type, line)
     inf_drive_speeds.drive_speeds()
+    inf_drive_speeds.text()
 
     return render_template('index.html')
 
