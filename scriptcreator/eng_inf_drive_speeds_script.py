@@ -63,7 +63,7 @@ class EngInfDriveSpeeds:
             for i in range(self.first_vfd, self.last_vfd + 1):
                 for j in mod_speeds.keys():
                     line1 = "GenericEngInfDs{}{}.Text = ".format(self.conveyor_type_short, i, j)
-                    line2 = "{} Conveyor M{}{}{} {} {} Speed.Text;".format(self.conveyor_type, self.conveyor_type_letter, i, self.line, j, mod_speeds[j])
+                    line2 = "{} Conveyor M{}{}{} {} Speed.Text;".format(self.conveyor_type, self.conveyor_type_letter, i, self.line, mod_speeds[j])
 
                     str1 = (line1 + line2)
                     self.create_script(str1)
