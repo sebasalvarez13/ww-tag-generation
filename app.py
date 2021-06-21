@@ -30,6 +30,8 @@ from tagcreator.real.rvg_real import RVGReal
 from tagcreator.real.wm_real import WMReal
 from tagcreator.real.wmstats_real import WMStatsReal
 
+from tagcreator.indirect.inf_drives_indirect_analog import InfDrivesIndirectAnalog
+
 from tags_display import tagdisplay
 from wm_script import WMScript
 from combine_csv import MergedDataFrame
@@ -108,6 +110,9 @@ def AddVFDDiscreteTags():
 
     vfdi = VFDInteger(int(first_vfd), int(last_vfd), conveyor_type, line)
     vfdi.create_csv()
+
+    vfd_ind_analog = InfDrivesIndirectAnalog(int(first_vfd), int(last_vfd), conveyor_type, line)
+    vfd_ind_analog.create_csv()
 
     return render_template('index.html')
 
@@ -200,7 +205,7 @@ def AddWMWindowScripts():
 
 @app.route("/appendtags", methods = ["GET", "POST"])
 def AppendTags():
-    folders = ["discrete", "integer", "real"]
+    folders = ["discrete", "integer", "indirect", "real"]
     #creates a csv file for each type of tag: integer, discrete, real, etc
     for f in folders:
         path = "csv-files/merged/{}_merged.csv".format(f)
