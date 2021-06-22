@@ -9,15 +9,19 @@ from os import path
 class EngInfDriveSpeeds:
     def __init__(self, first_vfd, last_vfd, conveyor_type, line):
         conveyor_types_dict = {"Distribution": ["D", "Dist"], "Transfer": ["T", "Trans"], "Accumulation": ["A", "Accum"], "Weigher Feeder": ["WF", "WF"], "Modulation": ["XF", "Mod"]}
-        line_numbers = {"A": 1, "B": 2, "C": 3, "D": 4}
+
         self.first_vfd = first_vfd
         self.last_vfd = last_vfd
-        self.conveyor_type = conveyor_type
 
+        self.conveyor_type = conveyor_type
         self.conveyor_type_letter = conveyor_types_dict[conveyor_type][0]
         self.conveyor_type_short = conveyor_types_dict[conveyor_type][1]
 
         self.line = line
+
+        self.accum_speeds = {"Transfer": "Ts", "Discharge": "Ds"}
+        self.mod_speeds = {"Hi": "Max", "Lo": "Min"}
+
 
     def header(self):
         line1 = """Module_Name = "";"""
@@ -35,22 +39,20 @@ class EngInfDriveSpeeds:
 
 
     def drive_speeds(self):
-        accum_speeds = {"Transfer": "Ts", "Discharge": "Ds"}
-        mod_speeds = ["Hi", "Lo"]
         line1 = ""
         line2 = ""
         
         for i in range(self.first_vfd, self.last_vfd + 1):
             if self.conveyor_type == "Accumulation":
-                for j in accum_speeds.keys():
-                    line1 = "GenericEngInfDs{}{}{}.Name = ".format(self.conveyor_type_short, i, accum_speeds[j])
+                for j in self.accum_speeds.keys():
+                    line1 = "GenericEngInfDs{}{}{}.Name = ".format(self.conveyor_type_short, i, self.accum_speeds[j])
                     line2 = "M{}{}{}_{}Mode_SpeedRef_SP.Name;".format(self.conveyor_type_letter, i, self.line, j)
 
                     str1 = (line1 + line2)
                     self.print_to_script(str1)
     
             elif self.conveyor_type == "Modulation":
-                for j in mod_speeds:
+                for j in self.mod_speeds.keys:
                     line1 = "GenericEngInfDs{}{}{}.Name = ".format(self.conveyor_type_short, i, j)
                     line2 = "M{}{}{}_{}_SpeedRef_SP.Name;".format(self.conveyor_type_letter, i, self.line, j)
 
@@ -66,16 +68,14 @@ class EngInfDriveSpeeds:
 
 
     def text(self):
-        accum_speeds = {"Transfer": "Ts", "Discharge": "Ds"}
-        mod_speeds = {"Hi": "Max", "Lo": "Min"}
         line1 = ""
         line2 = ""
 
         for i in range(self.first_vfd, self.last_vfd + 1):   
             if self.conveyor_type == "Modulation":
-                for j in mod_speeds.keys():
+                for j in self.mod_speeds.keys():
                     line1 = "GenericEngInfDs{}{}{}Text = ".format(self.conveyor_type_short, i, j)
-                    line2 = """ "{} Conveyor M{}{}{} {} Speed.Text;" """.format(self.conveyor_type, self.conveyor_type_letter, i, self.line, mod_speeds[j])
+                    line2 = """ "{} Conveyor M{}{}{} {} Speed.Text;" """.format(self.conveyor_type, self.conveyor_type_letter, i, self.line, self.mod_speeds[j])
 
                     str1 = (line1 + line2)
                     self.print_to_script(str1)
