@@ -72,20 +72,19 @@ class EngInfDriveSpeeds:
         mod_speeds = {"Hi": "Max", "Lo": "Min"}
         line1 = ""
         line2 = ""
-   
-        if self.conveyor_type == "Modulation":
-            for i in range(self.first_vfd, self.last_vfd + 1):
+
+        for i in range(self.first_vfd, self.last_vfd + 1):   
+            if self.conveyor_type == "Modulation":
                 for j in mod_speeds.keys():
-                    line1 = "GenericEngInfDs{}{}.Text = ".format(self.conveyor_type_short, i, j)
-                    line2 = "{} Conveyor M{}{}{} {} Speed.Text;".format(self.conveyor_type, self.conveyor_type_letter, i, self.line, mod_speeds[j])
+                    line1 = "GenericEngInfDs{}{}{}Text = ".format(self.conveyor_type_short, i, j)
+                    line2 = """ "{} Conveyor M{}{}{} {} Speed.Text;" """.format(self.conveyor_type, self.conveyor_type_letter, i, self.line, mod_speeds[j])
 
                     str1 = (line1 + line2)
                     self.print_to_script(str1)
-             
-        else:
-            for i in range(self.first_vfd, self.last_vfd + 1):
-                line1 = "GenericEngInfDs{}{}.Text = ".format(self.conveyor_type_short, i)
-                line2 = "{} Conveyor M{}{}{}".format(self.conveyor_type, self.conveyor_type_letter, i, self.line)
+                
+            else:
+                line1 = "GenericEngInfDs{}{}Text = ".format(self.conveyor_type_short, i)
+                line2 = """ "{} Conveyor M{}{}{}" """.format(self.conveyor_type, self.conveyor_type_letter, i, self.line)
 
                 str1 = (line1 + line2)
                 self.print_to_script(str1)
@@ -97,12 +96,12 @@ class EngInfDriveSpeeds:
         line2 = ""
         
         for i in range(self.first_vfd, self.last_vfd + 1):
-                for j in frequencies_list:
-                    line1 = "GenericEngInfDs{}{}{}Freq.Name = ".format(self.conveyor_type_short, i, j)
-                    line2 = "M{}{}{}_{}_Frequency.Name;".format(self.conveyor_type_letter, i, self.line, j)
+            for j in frequencies_list:
+                line1 = "GenericEngInfDs{}{}{}Freq.Name = ".format(self.conveyor_type_short, i, j)
+                line2 = "M{}{}{}_{}_Frequency.Name;".format(self.conveyor_type_letter, i, self.line, j)
 
-                    str1 = (line1 + line2)
-                    self.print_to_script(str1)
+                str1 = (line1 + line2)
+                self.print_to_script(str1)
 
 
     def print_to_script(self, str1):
