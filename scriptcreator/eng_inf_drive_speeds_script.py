@@ -18,7 +18,21 @@ class EngInfDriveSpeeds:
         self.conveyor_type_short = conveyor_types_dict[conveyor_type][1]
 
         self.line = line
-        
+
+    def header(self):
+        line1 = """Module_Name = "";"""
+        line2 = """ScreenTitle =  "Infeed Drive Speeds";"""
+        line3 = """DIM windowStateInt AS INTEGER;"""
+        line4 = """windowStateInt = WindowState("ENG - INF Menu");"""
+        line5 = """IF windowStateInt == 0 THEN"""
+        line6 = """Show("Eng - INF Menu");"""
+        line7 = """ENDIF;""" 
+
+        paragraph = [line1, line2, line3, line4, line5, line6, line7]
+
+        for line in paragraph:
+            self.create_script(line)
+
 
     def drive_speeds(self):
         accum_speeds = {"Transfer": "Ts", "Discharge": "Ds"}
@@ -76,6 +90,7 @@ class EngInfDriveSpeeds:
                 str1 = (line1 + line2)
                 self.create_script(str1)
 
+
     def create_script(self, str1):
         script_file = "window-scripts/script_infeed_drive_speeds.txt"
         try:
@@ -90,4 +105,5 @@ if __name__ == "__main__":
     first_vfd = 1
     last_vfd = 3
     wm = EngInfDriveSpeeds(first_vfd, last_vfd, "Transfer", "A")
-    wm.speed_ref()
+    wm.header()
+    wm.drive_speeds()
