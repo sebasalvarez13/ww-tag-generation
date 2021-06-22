@@ -21,6 +21,7 @@ class EngInfDriveSpeeds:
 
         self.accum_speeds = {"Transfer": "Ts", "Discharge": "Ds"}
         self.mod_speeds = {"Hi": "Max", "Lo": "Min"}
+        self.frequencies_list = ["Max", "Min"]
 
 
     def header(self):
@@ -52,7 +53,7 @@ class EngInfDriveSpeeds:
                     self.print_to_script(str1)
     
             elif self.conveyor_type == "Modulation":
-                for j in self.mod_speeds.keys:
+                for j in self.mod_speeds.keys():
                     line1 = "GenericEngInfDs{}{}{}.Name = ".format(self.conveyor_type_short, i, j)
                     line2 = "M{}{}{}_{}_SpeedRef_SP.Name;".format(self.conveyor_type_letter, i, self.line, j)
 
@@ -75,7 +76,7 @@ class EngInfDriveSpeeds:
             if self.conveyor_type == "Modulation":
                 for j in self.mod_speeds.keys():
                     line1 = "GenericEngInfDs{}{}{}Text = ".format(self.conveyor_type_short, i, j)
-                    line2 = """ "{} Conveyor M{}{}{} {} Speed.Text;" """.format(self.conveyor_type, self.conveyor_type_letter, i, self.line, self.mod_speeds[j])
+                    line2 = """ "{} Conveyor M{}{}{} {} Speed;" """.format(self.conveyor_type, self.conveyor_type_letter, i, self.line, self.mod_speeds[j])
 
                     str1 = (line1 + line2)
                     self.print_to_script(str1)
@@ -89,12 +90,11 @@ class EngInfDriveSpeeds:
 
 
     def frequencies(self):
-        frequencies_list = ["Max", "Min"]
         line1 = ""
         line2 = ""
         
         for i in range(self.first_vfd, self.last_vfd + 1):
-            for j in frequencies_list:
+            for j in self.frequencies_list:
                 line1 = "GenericEngInfDs{}{}{}Freq.Name = ".format(self.conveyor_type_short, i, j)
                 line2 = "M{}{}{}_{}_Frequency.Name;".format(self.conveyor_type_letter, i, self.line, j)
 
