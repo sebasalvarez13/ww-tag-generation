@@ -40,26 +40,24 @@ class EngInfDriveSpeeds:
         line1 = ""
         line2 = ""
         
-        if self.conveyor_type == "Accumulation":
-            for i in range(self.first_vfd, self.last_vfd + 1):
+        for i in range(self.first_vfd, self.last_vfd + 1):
+            if self.conveyor_type == "Accumulation":
                 for j in accum_speeds.keys():
                     line1 = "GenericEngInfDs{}{}{}.Name = ".format(self.conveyor_type_short, i, accum_speeds[j])
                     line2 = "M{}{}{}_{}Mode_SpeedRef_SP.Name;".format(self.conveyor_type_letter, i, self.line, j)
 
                     str1 = (line1 + line2)
                     self.print_to_script(str1)
-   
-        elif self.conveyor_type == "Modulation":
-            for i in range(self.first_vfd, self.last_vfd + 1):
+    
+            elif self.conveyor_type == "Modulation":
                 for j in mod_speeds:
                     line1 = "GenericEngInfDs{}{}{}.Name = ".format(self.conveyor_type_short, i, j)
                     line2 = "M{}{}{}_{}_SpeedRef_SP.Name;".format(self.conveyor_type_letter, i, self.line, j)
 
                     str1 = (line1 + line2)
                     self.print_to_script(str1)
-             
-        elif self.conveyor_type == "Transfer":
-            for i in range(self.first_vfd, self.last_vfd + 1):
+                
+            elif self.conveyor_type == "Transfer":
                 line1 = "GenericEngInfDs{}{}.Name = ".format(self.conveyor_type_short, i)
                 line2 = "M{}{}{}_SpeedRef_SP.Name;".format(self.conveyor_type_letter, i, self.line)
 
