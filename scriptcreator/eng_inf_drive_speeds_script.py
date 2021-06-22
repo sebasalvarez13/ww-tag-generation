@@ -91,6 +91,20 @@ class EngInfDriveSpeeds:
                 self.print_to_script(str1)
 
 
+    def frequencies(self):
+        frequencies_list = ["Max", "Min"]
+        line1 = ""
+        line2 = ""
+        
+        for i in range(self.first_vfd, self.last_vfd + 1):
+                for j in frequencies_list:
+                    line1 = "GenericEngInfDs{}{}{}Freq.Name = ".format(self.conveyor_type_short, i, j)
+                    line2 = "M{}{}{}_{}_Frequency.Name;".format(self.conveyor_type_letter, i, self.line, j)
+
+                    str1 = (line1 + line2)
+                    self.print_to_script(str1)
+
+
     def print_to_script(self, str1):
         script_file = "window-scripts/script_infeed_drive_speeds.txt"
         try:
@@ -115,8 +129,8 @@ class EngInfDriveSpeeds:
             self.print_to_script(" ")
 
         self.drive_speeds()
-        self.print_to_script(" ")
         self.text()
+        self.frequencies()
         self.print_to_script(" ")                   
                
 
