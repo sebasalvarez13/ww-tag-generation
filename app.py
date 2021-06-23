@@ -30,7 +30,7 @@ from tagcreator.real.rvg_real import RVGReal
 from tagcreator.real.wm_real import WMReal
 from tagcreator.real.wmstats_real import WMStatsReal
 
-from tagcreator.indirect.inf_drives_indirect_analog import InfDrivesIndirectAnalog
+from tagcreator.indirect.drives_indirect_analog import DrivesIndirectAnalog
 
 from tags_display import tagdisplay
 from scriptcreator.wm_script import WMScript
@@ -114,7 +114,7 @@ def AddVFDDiscreteTags():
     vfdi = VFDInteger(int(first_vfd), int(last_vfd), conveyor_type, line)
     vfdi.create_csv()
 
-    vfd_ind_analog = InfDrivesIndirectAnalog(int(first_vfd), int(last_vfd), conveyor_type, line)
+    vfd_ind_analog = DrivesIndirectAnalog(int(first_vfd), int(last_vfd), conveyor_type, line)
     vfd_ind_analog.create_csv()
 
     if conveyor_type == "Distribution" or conveyor_type == "Weigher Feeder":
