@@ -64,31 +64,29 @@ class InfDrivesIndirectAnalog:
         dict_data = self.min_freq()
         accum_speeds_list = ["Ts", "Ds"]
         mod_speeds_list = ["Hi", "Lo"]
-     
-        if self.conveyor_type == "Accumulation":
-            for i in range(self.first_vfd, self.last_vfd + 1):
-                for j in accum_speeds_list:
-                    dict1 = self.features()
-                    dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}{}".format(self.conveyor_type_letter, i, j)
-                    dict_data.append(dict1)
 
-        elif self.conveyor_type == "Modulation":
-            for i in range(self.first_vfd, self.last_vfd + 1):
-                for j in mod_speeds_list:
-                    dict1 = self.features()
-                    dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}{}".format(self.conveyor_type_letter, i, j)
-                    dict_data.append(dict1)
-               
-        elif self.conveyor_type == "Transfer":
-            for i in range(self.first_vfd, self.last_vfd + 1):
-                dict1 = self.features()
-                dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}".format(self.conveyor_type_letter, i) 
-                dict_data.append(dict1)
-
-        else:
+        if self.conveyor_type == "Distribution" or self.conveyor_type == "Weigher Feeder":
             dict1 = self.features()
             dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}".format(self.conveyor_type_letter, self.line)            
             dict_data.append(dict1)
+        else:
+            for i in range(self.first_vfd, self.last_vfd + 1):    
+                if self.conveyor_type == "Accumulation":
+                    for j in accum_speeds_list:
+                        dict1 = self.features()
+                        dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}{}".format(self.conveyor_type_letter, i, j)
+                        dict_data.append(dict1)
+
+                elif self.conveyor_type == "Modulation":
+                    for j in mod_speeds_list:
+                        dict1 = self.features()
+                        dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}{}".format(self.conveyor_type_letter, i, j)
+                        dict_data.append(dict1)
+                    
+                elif self.conveyor_type == "Transfer":
+                    dict1 = self.features()
+                    dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}".format(self.conveyor_type_letter, i) 
+                    dict_data.append(dict1)
 
         return(dict_data) 
 
