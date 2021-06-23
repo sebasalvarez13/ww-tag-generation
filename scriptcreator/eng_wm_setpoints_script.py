@@ -42,7 +42,7 @@ class EngWmSetpoints:
         line2 = ""
         
         for timer in self.setpoint_timers.keys():
-            line1 = "GenericEngWmSp{}{}.Name = ".format(self.conveyor_type_short, timer)
+            line1 = "GenericEngWmSp{}{}{}.Name = ".format(self.conveyor_type_short, self.line, timer)
             line2 = """ "M{}"+Text(mem_wm,"0")+"{}_{};" """.format(self.conveyor_type_letter, self.line, self.setpoint_timers[timer])
 
             str1 = (line1 + line2)
