@@ -10,6 +10,7 @@ class InfDrivesIndirectAnalog:
         self.conveyor_type = conveyor_type
         self.conveyor_type_letter = conveyor_types[conveyor_type]
         self.line = line
+        self.frequencies_list = ["Max", "Min"]
         
 
     def features(self):
@@ -30,34 +31,20 @@ class InfDrivesIndirectAnalog:
         return(my_dict)
 
 
-    def max_freq(self):
+    def frequencies(self):
         dict_data = []
-        if self.conveyor_type == "Distribution" or self.conveyor_type == "Weigher Feeder":
-            dict1 = self.features()
-            dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}MaxFreq".format(self.conveyor_type_letter, self.line)
-            dict_data.append(dict1)
-        else:
-            for i in range(self.first_vfd, self.last_vfd + 1):
+        for freq in self.frequencies_list:
+            if self.conveyor_type == "Distribution" or self.conveyor_type == "Weigher Feeder":
                 dict1 = self.features()
-                dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}MaxFreq".format(self.conveyor_type_letter, i)
+                dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}{}Freq".format(self.conveyor_type_letter, self.line, freq)
                 dict_data.append(dict1)
+            else:
+                for i in range(self.first_vfd, self.last_vfd + 1):
+                    dict1 = self.features()
+                    dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}{}Freq".format(self.conveyor_type_letter, i, freq)
+                    dict_data.append(dict1)
 
         return(dict_data)        
-
-
-    def min_freq(self):
-        dict_data = self.max_freq()
-        if self.conveyor_type == "Distribution" or self.conveyor_type == "Weigher Feeder":
-            dict1 = self.features()
-            dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}MinFreq".format(self.conveyor_type_letter, self.line)
-            dict_data.append(dict1)
-        else:
-            for i in range(self.first_vfd, self.last_vfd + 1):
-                dict1 = self.features()
-                dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}MinFreq".format(self.conveyor_type_letter, i)
-                dict_data.append(dict1)
-
-        return(dict_data)            
 
 
     def speed_ref(self):
