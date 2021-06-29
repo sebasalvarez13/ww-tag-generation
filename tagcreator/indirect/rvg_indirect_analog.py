@@ -5,10 +5,7 @@ import os.path
 from os import path
 
 class RevGateIndirectAnalog:
-    def __init__(self, first_gate, last_gate, line):
-        self.first_gate = first_gate
-        self.last_gate = last_gate
-    
+    def __init__(self, line):
         self.line = line
 
         self.controls_list = ["CMD", "Faults", "ManAngle", "Status"]
