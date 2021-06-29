@@ -3,33 +3,17 @@
 import csv
 import os.path
 from os import path
+from tagcreator.indirect.indirect_analog_features import features
 
 
 class PkgIndirectAnalog:
     def __init__(self, line):
         self.line = line
 
-    
-    def features(self):
-        dict_data = []
-        my_dict = {
-            ":IndirectAnalog":"",
-            "Group": "$System",
-            "Comment": "",
-            "Logged": "No",
-            "EventLogged": "No",
-            "EventLoggingPriority": 0,
-            "RetentiveValue": "No",
-            "SymbolicName": ""
-            }
-
-        dict_data.append(my_dict)
-
-        return(my_dict)
 
     def gate(self):
         dict_data = []
-        dict1 = self.features()
+        dict1 = features()
         dict1[":IndirectAnalog"] = "GenericPkgWmGate{}".format(self.line)            
         dict_data.append(dict1)
 
@@ -38,7 +22,7 @@ class PkgIndirectAnalog:
 
     def gate_csw(self):
         dict_data = self.gate()
-        dict1 = self.features()
+        dict1 = features()
         dict1[":IndirectAnalog"] = "GenericPkgWmGate{}CSW".format(self.line)            
         dict_data.append(dict1)
 
@@ -47,7 +31,7 @@ class PkgIndirectAnalog:
 
     def csw(self):
         dict_data = self.gate_csw()
-        dict1 = self.features()
+        dict1 = features()
         dict1[":IndirectAnalog"] = "GenericPkgWmCSW"
         dict_data.append(dict1)
 
@@ -70,15 +54,24 @@ class PkgIndirectAnalog:
             dict_data = self.gate_csw()     
         csv_columns = list(dict_data[0].keys())
         
-        try:
-            with open(csv_file, 'a') as csvfile:
-                writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
-                if self.module_exists() != True:
+        if self.module_exists() != True:
+            try:
+                with open(csv_file, 'w') as csvfile:
+                    writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
                     writer.writeheader()
-                for data in dict_data:
-                    writer.writerow(data)
-        except IOError as e:
-            print(e)              
+                    for data in dict_data:
+                        writer.writerow(data)
+            except IOError as e:
+                print(e)
+        else:
+            try:
+                with open(csv_file, 'a') as csvfile:
+                    writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
+                    #writer.writeheader()
+                    for data in dict_data:
+                        writer.writerow(data)
+            except IOError as e:
+                print(e)                           
 
 if __name__ == "__main__":
     wm = PkgIndirectAnalog('B')
