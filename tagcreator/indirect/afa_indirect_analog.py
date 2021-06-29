@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import csv
+from indirect_analog_features import features
+
 
 class AFAIndirectAnalog:
     def __init__(self):
