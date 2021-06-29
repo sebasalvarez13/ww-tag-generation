@@ -3,7 +3,7 @@
 import csv
 import os.path
 from os import path
-from indirect_analog_features import features
+from tagcreator.indirect.indirect_analog_features import features
 
 class SysIndirectAnalog:
     def __init__(self):
