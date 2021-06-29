@@ -36,7 +36,7 @@ class PAFAIndirectAnalog:
         dict_data = self.other_factors()
         for number in self.number_type:
             dict1 = features()
-            dict1[":IndirectAnalog"] = "GenericPAFABpmActual{}".format(number)
+            dict1[":IndirectAnalog"] = "{}BpmActual{}".format(self.tag_start, number)
             dict_data.append(dict1)
 
         return(dict_data) 
@@ -46,7 +46,7 @@ class PAFAIndirectAnalog:
         dict_data = self.bpm()
         for number in self.number_type:
             dict1 = features()
-            dict1[":IndirectAnalog"] = "GenericPAFADutyCycle{}".format(number)
+            dict1[":IndirectAnalog"] = "{}DutyCycle{}".format(self.tag_start, number)
             dict_data.append(dict1)
 
         return(dict_data) 
@@ -56,7 +56,7 @@ class PAFAIndirectAnalog:
         dict_data = self.duty_cycle()
         for outer in self.outer_list:
             dict1 = features()
-            dict1[":IndirectAnalog"] = "GenericPAFAOuter{}".format(outer)
+            dict1[":IndirectAnalog"] = "{}Outer{}".format(self.tag_start, outer)
             dict_data.append(dict1)
 
         return(dict_data) 
