@@ -45,6 +45,7 @@ class RevGateIndirectAnalog:
 
         return(dict_data)
 
+
     def control(self):
         dict_data = self.verify()
         for control in self.controls_list:
@@ -54,7 +55,6 @@ class RevGateIndirectAnalog:
 
         return(dict_data)
          
-
 
     def module_exists(self):
         file_path = "/mnt/c/Projects/ww-tag-generation/csv-files/indirect/rvg.csv"
@@ -66,23 +66,31 @@ class RevGateIndirectAnalog:
 
     def create_csv(self):
         csv_file = "csv-files/indirect/rvg.csv"
-        if self.module_exists() != True :        
+
+        if self.module_exists() != True:
             dict_data = self.control()
-        else:
-            dict_data = self.verify()     
-        csv_columns = list(dict_data[0].keys())
-        
-        try:
-            with open(csv_file, 'a') as csvfile:
-                writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
-                if self.module_exists() != True:
+            csv_columns = list(dict_data[0].keys())
+            try:
+                with open(csv_file, 'w') as csvfile:
+                    writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
                     writer.writeheader()
-                for data in dict_data:
-                    writer.writerow(data)
-        except IOError as e:
-            print(e)  
+                    for data in dict_data:
+                        writer.writerow(data)
+            except IOError as e:
+                print(e)
+        else:
+            dict_data = self.verify()
+            csv_columns = list(dict_data[0].keys())
+            try:
+                with open(csv_file, 'a') as csvfile:
+                    writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
+                    #writer.writeheader()
+                    for data in dict_data:
+                        writer.writerow(data)
+            except IOError as e:
+                print(e)  
 
 
 if __name__ == "__main__":
-    wm = RevGateIndirectAnalog('B')
+    wm = RevGateIndirectAnalog('A')
     wm.create_csv()                 
