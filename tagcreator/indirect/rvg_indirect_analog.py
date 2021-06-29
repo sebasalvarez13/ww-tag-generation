@@ -57,7 +57,7 @@ class RevGateIndirectAnalog:
          
 
     def module_exists(self):
-        file_path = "/mnt/c/Projects/ww-tag-generation/csv-files/indirect/rvg.csv"
+        file_path = "/mnt/c/Projects/ww-tag-generation/csv-files/indirect/rvg_indirect_analog.csv"
         if path.exists(file_path):
             return True
         else:
@@ -65,7 +65,7 @@ class RevGateIndirectAnalog:
 
 
     def create_csv(self):
-        csv_file = "csv-files/indirect/rvg.csv"
+        csv_file = "csv-files/indirect/rvg_indirect_analog.csv"
 
         if self.module_exists() != True:
             dict_data = self.control()
