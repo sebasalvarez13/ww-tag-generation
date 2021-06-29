@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
 import csv
+from tagcreator.indirect.indirect_analog_features import features
+
 
 class DrivesIndirectAnalog:
     def __init__(self, first_vfd, last_vfd, conveyor_type, line):
@@ -15,36 +17,26 @@ class DrivesIndirectAnalog:
         self.frequencies_list = ["Max", "Min"]
         self.setpoint_timers = {"RunTmrOn": "RunTmrOnPre", "FwdWdg": "ForwardWdgPre"}
 
-        
 
-    def features(self):
+    def drives(self):
         dict_data = []
-        my_dict = {
-            ":IndirectAnalog":"",
-            "Group": "$System",
-            "Comment": "",
-            "Logged": "No",
-            "EventLogged": "No",
-            "EventLoggingPriority": 0,
-            "RetentiveValue": "No",
-            "SymbolicName": ""
-            }
+        dict1 = features()
+        dict1[":IndirectAnalog"] = "Generic{}{}CSW".format(self.conveyor_type_short, self.line)            
+        dict_data.append(dict1)
 
-        dict_data.append(my_dict)
-
-        return(my_dict)
+        return(dict_data) 
 
 
     def frequencies(self):
-        dict_data = []
+        dict_data = self.drives()
         for freq in self.frequencies_list:
             if self.conveyor_type == "Distribution" or self.conveyor_type == "Weigher Feeder":
-                dict1 = self.features()
+                dict1 = features()
                 dict1[":IndirectAnalog"] = "GenericEngWmDs{}{}{}Freq".format(self.conveyor_type_short, self.line, freq)
                 dict_data.append(dict1)
             else:
                 for i in range(self.first_vfd, self.last_vfd + 1):
-                    dict1 = self.features()
+                    dict1 = features()
                     dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}{}Freq".format(self.conveyor_type_short, i, freq)
                     dict_data.append(dict1)
 
@@ -57,25 +49,25 @@ class DrivesIndirectAnalog:
         mod_speeds_list = ["Hi", "Lo"]
 
         if self.conveyor_type == "Distribution" or self.conveyor_type == "Weigher Feeder":
-            dict1 = self.features()
+            dict1 = features()
             dict1[":IndirectAnalog"] = "GenericEngWmDs{}{}".format(self.conveyor_type_short, self.line)            
             dict_data.append(dict1)
         else:
             for i in range(self.first_vfd, self.last_vfd + 1):    
                 if self.conveyor_type == "Accumulation":
                     for speed in accum_speeds_list:
-                        dict1 = self.features()
+                        dict1 = features()
                         dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}{}".format(self.conveyor_type_short, i, speed)
                         dict_data.append(dict1)
 
                 elif self.conveyor_type == "Modulation":
                     for speed in mod_speeds_list:
-                        dict1 = self.features()
+                        dict1 = features()
                         dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}{}".format(self.conveyor_type_short, i, speed)
                         dict_data.append(dict1)
                     
                 elif self.conveyor_type == "Transfer":
-                    dict1 = self.features()
+                    dict1 = features()
                     dict1[":IndirectAnalog"] = "GenericEngInfDs{}{}".format(self.conveyor_type_short, i) 
                     dict_data.append(dict1)
 
@@ -86,12 +78,12 @@ class DrivesIndirectAnalog:
         dict_data = self.speed_ref()
         for timer in self.setpoint_timers.keys():
             if self.conveyor_type == "Distribution" or self.conveyor_type == "Weigher Feeder":
-                dict1 = self.features()
+                dict1 = features()
                 dict1[":IndirectAnalog"] = "GenericEngWmSp{}{}{}".format(self.conveyor_type_short, self.line, timer)            
                 dict_data.append(dict1)
             else:
                 for i in range(self.first_vfd, self.last_vfd + 1):    
-                    dict1 = self.features()
+                    dict1 = features()
                     dict1[":IndirectAnalog"] = "GenericEngInfSp{}{}{}".format(self.conveyor_type_short, i, timer)
                     dict_data.append(dict1)
 
