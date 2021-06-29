@@ -3,6 +3,8 @@
 import csv
 import os.path
 from os import path
+from indirect_analog_features import features
+
 
 class RevGateIndirectAnalog:
     def __init__(self, line):
@@ -13,28 +15,11 @@ class RevGateIndirectAnalog:
         self.measurements_list = ["AngleSts", "LevelTrans", "ProductAvailable", "Status"]
         self.verify_list = ["BedDepth", "Hole", "PA", "PN", "Pos", "PosSp"]
 
-    def features(self):
-        dict_data = []
-        my_dict = {
-            ":IndirectAnalog":"",
-            "Group": "$System",
-            "Comment": "",
-            "Logged": "No",
-            "EventLogged": "No",
-            "EventLoggingPriority": 0,
-            "RetentiveValue": "No",
-            "SymbolicName": ""
-            }
-
-        dict_data.append(my_dict)
-
-        return(my_dict)
-
 
     def setpoints(self):
         dict_data = []
         for setpoint in self.setpoints_list:
-            dict1 = self.features()
+            dict1 = features()
             dict1[":IndirectAnalog"] = "GenericRevGate{}Sp{}".format(self.line, setpoint)
             dict_data.append(dict1)
 
@@ -44,7 +29,7 @@ class RevGateIndirectAnalog:
     def measurements(self):
         dict_data = self.setpoints()
         for measurement in self.measurements_list:
-            dict1 = self.features()
+            dict1 = features()
             dict1[":IndirectAnalog"] = "GenericRevGate{}{}".format(self.line, measurement)
             dict_data.append(dict1)
 
@@ -54,7 +39,7 @@ class RevGateIndirectAnalog:
     def verify(self):
         dict_data = self.measurements()
         for verify in self.verify_list:
-            dict1 = self.features()
+            dict1 = features()
             dict1[":IndirectAnalog"] = "GenericEngRevGate{}Verify{}".format(self.line, verify)
             dict_data.append(dict1)
 
@@ -63,7 +48,7 @@ class RevGateIndirectAnalog:
     def control(self):
         dict_data = self.verify()
         for control in self.controls_list:
-            dict1 = self.features()
+            dict1 = features()
             dict1[":IndirectAnalog"] = "GenericRevGateControl{}".format(control)
             dict_data.append(dict1)
 
@@ -99,5 +84,5 @@ class RevGateIndirectAnalog:
 
 
 if __name__ == "__main__":
-    wm = RevGateIndirectAnalog(1, 5, 'B')
+    wm = RevGateIndirectAnalog('B')
     wm.create_csv()                 
