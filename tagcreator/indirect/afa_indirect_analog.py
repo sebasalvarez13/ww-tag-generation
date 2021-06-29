@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import csv
-from indirect_analog_features import features
+from tagcreator.indirect.indirect_analog_features import features
 
 
 class AFAIndirectAnalog:
@@ -11,27 +11,9 @@ class AFAIndirectAnalog:
         self.derated_list = ["Coarse", "Fine", "Medium", "No"]
         
 
-    def features(self):
-        dict_data = []
-        my_dict = {
-            ":IndirectAnalog":"",
-            "Group": "$System",
-            "Comment": "",
-            "Logged": "No",
-            "EventLogged": "No",
-            "EventLoggingPriority": 0,
-            "RetentiveValue": "No",
-            "SymbolicName": ""
-            }
-
-        dict_data.append(my_dict)
-
-        return(my_dict)
-
-
     def derated_percent(self):
         dict_data = []
-        dict1 = self.features()
+        dict1 = features()
         dict1[":IndirectAnalog"] = "GenericAFADeratedPercent"
         dict_data.append(dict1)
 
@@ -40,7 +22,7 @@ class AFAIndirectAnalog:
 
     def afa_derating_percent(self):
         dict_data = self.derated_percent()
-        dict1 = self.features()
+        dict1 = features()
         dict1[":IndirectAnalog"] = "GenericEngAFADeratingPercent"
         dict_data.append(dict1)
 
@@ -49,7 +31,7 @@ class AFAIndirectAnalog:
 
     def afa_last_active(self):
         dict_data = self.afa_derating_percent()
-        dict1 = self.features()
+        dict1 = features()
         dict1[":IndirectAnalog"] = "GenericAFALastActiveBPMPercent"
         dict_data.append(dict1)
 
@@ -58,7 +40,7 @@ class AFAIndirectAnalog:
 
     def afa_multiplier(self):
         dict_data = self.afa_last_active()
-        dict1 = self.features()
+        dict1 = features()
         dict1[":IndirectAnalog"] = "GenericAFAMultiplier"
         dict_data.append(dict1)
 
@@ -68,7 +50,7 @@ class AFAIndirectAnalog:
     def afa_pid(self):
         dict_data = self.afa_multiplier()
         for i in self.afa_variables:
-            dict1 = self.features()
+            dict1 = features()
             dict1[":IndirectAnalog"] = "GenericAFAPID_{}".format(i)
             dict_data.append(dict1)
 
@@ -77,7 +59,7 @@ class AFAIndirectAnalog:
 
     def afa_accum_full_suspend(self):         
         dict_data = self.afa_pid()
-        dict1 = self.features()
+        dict1 = features()
         dict1[":IndirectAnalog"] = "GenericEngAFAAccumFullSuspend"
         dict_data.append(dict1)
 
@@ -87,7 +69,7 @@ class AFAIndirectAnalog:
     def adjust_amount(self):
         dict_data = self.afa_accum_full_suspend()
         for adjust in self.derated_list[0:3]:
-            dict1 = self.features()
+            dict1 = features()
             dict1[":IndirectAnalog"] = "GenericEngAFA{}AdjAmt".format(adjust)
 
             dict_data.append(dict1)
@@ -98,7 +80,7 @@ class AFAIndirectAnalog:
     def neg_limit(self):
         dict_data = self.adjust_amount() 
         for adjust in self.derated_list:
-            dict1 = self.features()
+            dict1 = features()
             dict1[":IndirectAnalog"] = "GenericEngAFA{}AdjNeg".format(adjust)
 
             dict_data.append(dict1)
@@ -109,7 +91,7 @@ class AFAIndirectAnalog:
     def pos_limit(self):
         dict_data = self.neg_limit() 
         for adjust in self.derated_list:
-            dict1 = self.features()
+            dict1 = features()
             dict1[":IndirectAnalog"] = "GenericEngAFA{}AdjPos".format(adjust)
 
             dict_data.append(dict1)
@@ -119,7 +101,7 @@ class AFAIndirectAnalog:
 
     def d1_off_debounce(self):
         dict_data = self.pos_limit()
-        dict1 = self.features()
+        dict1 = features()
         dict1[":IndirectAnalog"] = "GenericEngAFAD1OffDebounce"
 
         dict_data.append(dict1)
@@ -129,7 +111,7 @@ class AFAIndirectAnalog:
 
     def d1_off_suspend(self):
         dict_data = self.d1_off_debounce()
-        dict1 = self.features()
+        dict1 = features()
         dict1[":IndirectAnalog"] = "GenericEngAFAD1OffSuspend"
 
         dict_data.append(dict1)
@@ -141,7 +123,7 @@ class AFAIndirectAnalog:
         dict_data = self.d1_off_suspend()
         m_values_list = ["Max", "Min", "Reset"]
         for i in m_values_list:
-            dict1 = self.features()
+            dict1 = features()
             dict1[":IndirectAnalog"] = "GenericEngAFA{}M".format(i)
             dict_data.append(dict1)
 
@@ -150,7 +132,7 @@ class AFAIndirectAnalog:
 
     def max_spd_debounce(self):
         dict_data = self.m_values()
-        dict1 = self.features()
+        dict1 = features()
         dict1[":IndirectAnalog"] = "GenericEngAFAMaxSpeedDebounce"
         dict_data.append(dict1)
 
@@ -159,7 +141,7 @@ class AFAIndirectAnalog:
 
     def max_spd_suspend(self):
         dict_data = self.max_spd_debounce()
-        dict1 = self.features()
+        dict1 = features()
         dict1[":IndirectAnalog"] = "GenericEngAFAMaxSpeedSuspend"
         dict_data.append(dict1)
 
@@ -168,7 +150,7 @@ class AFAIndirectAnalog:
 
     def recirc_time(self):
         dict_data = self.max_spd_suspend()
-        dict1 = self.features()
+        dict1 = features()
         dict1[":IndirectAnalog"] = "GenericEngAFARecircTime"
         dict_data.append(dict1)
 
@@ -177,7 +159,7 @@ class AFAIndirectAnalog:
 
     def sample_time(self):
         dict_data = self.recirc_time()
-        dict1 = self.features()
+        dict1 = features()
         dict1[":IndirectAnalog"] = "GenericEngAFASampleTime"
         dict_data.append(dict1)
 
@@ -188,7 +170,7 @@ class AFAIndirectAnalog:
         dict_data = self.sample_time()
         purge_values_list = ["Override", "Timer"]
         for i in purge_values_list:
-            dict1 = self.features()
+            dict1 = features()
             dict1[":IndirectAnalog"] = "GenericEngAFAPurge{}".format(i)
             dict_data.append(dict1)
 
