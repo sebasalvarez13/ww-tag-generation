@@ -7,55 +7,33 @@ class PAFAIndirectAnalog:
     def __init__(self):
         self.number_type = ["Decimal", "Percent"]
         self.outer_list = ["CV", "L", "PV"]
+        self.bag_inputs = ["Speed", "Weight"]
+        self.tag_start = "GenericPAFA"
+        self.other_pafa_factors = ["Multiplier", "PidSp", "WFTrend"]
 
 
-    def bag_speed(self):
+    def bag(self):
         dict_data = []
-        dict1 = features()
-        dict1[":IndirectAnalog"] = "GenericPAFABagSpeed"
-        dict_data.append(dict1)
+        for bag in self.bag_inputs:
+            dict1 = features()
+            dict1[":IndirectAnalog"] = "{}Bag{}".format(self.tag_start, bag)
+            dict_data.append(dict1)
 
         return(dict_data)
 
 
-    def bag_weight(self):
-        dict_data = self.bag_speed()
-        dict1 = features()
-        dict1[":IndirectAnalog"] = "GenericPAFABagWeight"
-        dict_data.append(dict1)
-
-        return(dict_data) 
-
-
-    def multiplier(self):
-        dict_data = self.bag_weight()
-        dict1 = features()
-        dict1[":IndirectAnalog"] = "GenericPAFAMultiplier"
-        dict_data.append(dict1)
-
-        return(dict_data) 
-
-
-    def pid(self):
-        dict_data = self.multiplier()
-        dict1 = features()
-        dict1[":IndirectAnalog"] = "GenericPAFAPidSp"
-        dict_data.append(dict1)
-
-        return(dict_data) 
-
-
-    def wf_trend(self):
-        dict_data = self.pid()
-        dict1 = features()
-        dict1[":IndirectAnalog"] = "GenericPAFAWFTrend"
-        dict_data.append(dict1)
+    def other_factors(self):
+        dict_data = self.bag()
+        for factor in self.other_pafa_factors:
+            dict1 = features()
+            dict1[":IndirectAnalog"] = "{}{}".format(self.tag_start, factor)
+            dict_data.append(dict1)
 
         return(dict_data) 
 
 
     def bpm(self):
-        dict_data = self.wf_trend()
+        dict_data = self.other_factors()
         for number in self.number_type:
             dict1 = features()
             dict1[":IndirectAnalog"] = "GenericPAFABpmActual{}".format(number)
