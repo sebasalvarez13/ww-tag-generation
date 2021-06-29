@@ -9,7 +9,7 @@ from indirect_analog_features import features
 class RevGateIndirectAnalog:
     def __init__(self, line):
         self.line = line
-
+        self.tag_start = "GenericRevGate"    
         self.controls_list = ["CMD", "Faults", "ManAngle", "Status"]
         self.setpoints_list = ["MPM", "FltrWgt"]
         self.measurements_list = ["AngleSts", "LevelTrans", "ProductAvailable", "Status"]
@@ -20,7 +20,7 @@ class RevGateIndirectAnalog:
         dict_data = []
         for setpoint in self.setpoints_list:
             dict1 = features()
-            dict1[":IndirectAnalog"] = "GenericRevGate{}Sp{}".format(self.line, setpoint)
+            dict1[":IndirectAnalog"] = "{}{}Sp{}".format(self.tag_start, self.line, setpoint)
             dict_data.append(dict1)
 
         return(dict_data)
@@ -30,7 +30,7 @@ class RevGateIndirectAnalog:
         dict_data = self.setpoints()
         for measurement in self.measurements_list:
             dict1 = features()
-            dict1[":IndirectAnalog"] = "GenericRevGate{}{}".format(self.line, measurement)
+            dict1[":IndirectAnalog"] = "{}{}{}".format(self.tag_start, self.line, measurement)
             dict_data.append(dict1)
 
         return(dict_data)     
@@ -49,7 +49,7 @@ class RevGateIndirectAnalog:
         dict_data = self.verify()
         for control in self.controls_list:
             dict1 = features()
-            dict1[":IndirectAnalog"] = "GenericRevGateControl{}".format(control)
+            dict1[":IndirectAnalog"] = "{}Control{}".format(self.tag_start, control)
             dict_data.append(dict1)
 
         return(dict_data)
