@@ -3,10 +3,10 @@
 import csv
 import os.path
 from os import path
-from indirect_analog_features import features
+from tagcreator.indirect.indirect_analog_features import features
 
 
-class RevGateIndirectAnalog:
+class RvgIndirectAnalog:
     def __init__(self, line):
         self.line = line
         self.tag_start = "GenericRevGate"    
@@ -92,5 +92,5 @@ class RevGateIndirectAnalog:
 
 
 if __name__ == "__main__":
-    wm = RevGateIndirectAnalog('A')
+    wm = RvgIndirectAnalog('A')
     wm.create_csv()                 
