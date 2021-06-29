@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import csv
-from indirect_analog_features import features
+from tagcreator.indirect.indirect_analog_features import features
 
 class PAFAIndirectAnalog:
     def __init__(self):
