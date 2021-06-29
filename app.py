@@ -31,6 +31,15 @@ from tagcreator.real.wm_real import WMReal
 from tagcreator.real.wmstats_real import WMStatsReal
 
 from tagcreator.indirect.drives_indirect_analog import DrivesIndirectAnalog
+from tagcreator.indirect.sensor_indirect_analog import SensorIndirectAnalog
+from tagcreator.indirect.afa_indirect_analog import AFAIndirectAnalog
+from tagcreator.indirect.pafa_indirect_analog import PAFAIndirectAnalog
+from tagcreator.indirect.pkg_indirect_analog import PkgIndirectAnalog
+from tagcreator.indirect.rvg_indirect_analog import RvgIndirectAnalog
+from tagcreator.indirect.sys_indirect_analog import SysIndirectAnalog
+from tagcreator.indirect.wm_indirect_analog import WMIndirectAnalog
+
+from tagcreator.indirect.sensor_indirect_analog_rev2 import counts
 
 from tags_display import tagdisplay
 from scriptcreator.wm_script import WMScript
@@ -63,6 +72,9 @@ def AddLevelTransTags():
 
     ltr = LTReal(int(first_transmitter), int(last_transmitter), int(transmitter_number), conveyor_type, line)
     ltr.create_csv()
+
+    if conveyor_type == "Accumulation" or conveyor_type == "Transfer":
+        pass
 
     return render_template('index.html')
 
@@ -98,6 +110,7 @@ def AddModuleTags():
     wmstats = WMStatsReal(int(first_module), int(last_module))
     wmstats.create_csv()
 
+
     return render_template('index.html')
 
 
@@ -120,9 +133,12 @@ def AddVFDDiscreteTags():
     if conveyor_type == "Distribution" or conveyor_type == "Weigher Feeder":
         wm_drive_speeds = EngWMDriveSpeeds(int(first_vfd), int(last_vfd), conveyor_type, line)
         wm_drive_speeds.create_script()
+        wm_indirect_analog = WMIndirectAnalog(conveyor_type, line)
+        wm_indirect_analog.create_csv()
     else:            
         inf_drive_speeds = EngInfDriveSpeeds(int(first_vfd), int(last_vfd), conveyor_type, line)
         inf_drive_speeds.create_script()
+
 
     return render_template('index.html')
 
@@ -152,6 +168,9 @@ def AddPAFATags():
     pafar = PAFAReal(int(first_module), int(last_module))
     pafar.create_csv()
 
+    pafa_indirect_analog = PAFAIndirectAnalog()
+    pafa_indirect_analog.create_csv()
+
     return render_template('index.html')
 
 
@@ -163,6 +182,14 @@ def Addpkgautosys():
 
     pkg = PkgAutoSysInteger(int(first_module), int(last_module), line)
     pkg.create_csv()
+
+    pkg_indirect_analog = PkgIndirectAnalog(line)
+    pkg_indirect_analog.create_csv()
+
+    sys_indirect_analog = SysIndirectAnalog()
+    sys_indirect_analog.create_csv()
+
+
 
     return render_template('index.html')
 
@@ -179,6 +206,9 @@ def Addrevgates():
     rvgr = RVGReal(int(first_gate), int(last_gate), line)
     rvgr.create_csv()
 
+    rvg_indirect_analog = RvgIndirectAnalog(line)
+    rvg_indirect_analog.create_csv()
+
     return render_template('index.html')
 
 
@@ -188,6 +218,9 @@ def Addafa():
 
     afai = AFAInteger(line)
     afai.create_csv()
+
+    afa_indirect_analog = AFAIndirectAnalog()
+    afa_indirect_analog.create_csv()
 
     return render_template('index.html')
 
