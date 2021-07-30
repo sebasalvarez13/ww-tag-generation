@@ -16,6 +16,7 @@ from tagcreator.discrete.ls_discrete import LSDiscrete
 from tagcreator.discrete.vfd_discrete import VFDDiscrete
 from tagcreator.discrete.sg_discrete import SGDiscrete
 from tagcreator.discrete.pafa_discrete import PAFADiscrete
+from tagcreator.discrete.memory_discrete import MemoryDisc
 
 from tagcreator.integer.lt_integer import LTInteger
 from tagcreator.integer.vfd_integer import VFDInteger
@@ -39,7 +40,6 @@ from tagcreator.indirect.rvg_indirect_analog import RvgIndirectAnalog
 from tagcreator.indirect.sys_indirect_analog import SysIndirectAnalog
 from tagcreator.indirect.wm_indirect_analog import WMIndirectAnalog
 
-from tagcreator.indirect.sensor_indirect_analog_rev2 import counts
 
 from tags_display import tagdisplay
 from scriptcreator.wm_script import WMScript
@@ -64,6 +64,9 @@ def AddLevelTransTags():
     conveyor_type = request.form["conveyor_type"]
     line = request.form["line"]
 
+    mem_disc = MemoryDisc()
+    mem_disc.create_csv()
+
     ltd = LTDiscrete(int(first_transmitter), int(last_transmitter), int(transmitter_number), conveyor_type, line)
     ltd.create_csv()
 
@@ -73,8 +76,9 @@ def AddLevelTransTags():
     ltr = LTReal(int(first_transmitter), int(last_transmitter), int(transmitter_number), conveyor_type, line)
     ltr.create_csv()
 
-    if conveyor_type == "Accumulation" or conveyor_type == "Transfer":
-        pass
+    lt_indirect = SensorIndirectAnalog(1, 5, "Analog")
+    lt_indirect.create_csv()
+
 
     return render_template('index.html')
 
@@ -89,6 +93,9 @@ def AddLevelSensorTags():
 
     lsd = LSDiscrete(int(first_sensor), int(last_sensor), int(sensor_number), conveyor_type, line)
     lsd.create_csv()
+
+    ls_indirect = SensorIndirectAnalog(1, 5, "Discrete")
+    ls_indirect.create_csv()
 
     return render_template('index.html')
 
@@ -109,6 +116,9 @@ def AddModuleTags():
 
     wmstats = WMStatsReal(int(first_module), int(last_module))
     wmstats.create_csv()
+
+    wm_indirect_analog = WMIndirectAnalog()
+    wm_indirect_analog.create_csv()
 
 
     return render_template('index.html')
@@ -133,8 +143,7 @@ def AddVFDDiscreteTags():
     if conveyor_type == "Distribution" or conveyor_type == "Weigher Feeder":
         wm_drive_speeds = EngWMDriveSpeeds(int(first_vfd), int(last_vfd), conveyor_type, line)
         wm_drive_speeds.create_script()
-        wm_indirect_analog = WMIndirectAnalog(conveyor_type, line)
-        wm_indirect_analog.create_csv()
+
     else:            
         inf_drive_speeds = EngInfDriveSpeeds(int(first_vfd), int(last_vfd), conveyor_type, line)
         inf_drive_speeds.create_script()
@@ -188,7 +197,6 @@ def Addpkgautosys():
 
     sys_indirect_analog = SysIndirectAnalog()
     sys_indirect_analog.create_csv()
-
 
 
     return render_template('index.html')
@@ -258,6 +266,7 @@ def AppendTags():
     #combines the integer, discrete, real, etc csv files into one final csv ready to DBload
     df_combined = MergedDataFrame.mergeIO()
     df_combined.to_csv("csv-files/merged/final.csv", index = False, encoding = "utf-8-sig")
+
 
     return render_template("output.html")
 
