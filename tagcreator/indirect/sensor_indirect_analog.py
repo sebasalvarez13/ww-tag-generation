@@ -8,6 +8,8 @@ class SensorIndirectAnalog:
     def __init__(self, first_sensor, last_sensor, sensor_type):
         self.first_sensor = first_sensor
         self.last_sensor = last_sensor
+        self.sensor_count = (self.last_sensor + 1) - (self.first_sensor)
+        
         self.sensor_type = sensor_type
 
         self.sensor_types = ["Analog", "Discrete"]
