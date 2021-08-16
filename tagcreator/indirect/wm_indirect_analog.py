@@ -8,14 +8,8 @@ from tagcreator.indirect.indirect_analog_features import features
 
 
 class WMIndirectAnalog:
-    def __init__(self, conveyor_type, line):
-        conveyor_types_dict = {"Distribution": ["D", "Dist"], "Transfer": ["T", "Trans"], "Accumulation": ["A", "Accum"], "Weigher Feeder": ["WF", "WF"], "Modulation": ["XF", "Mod"]}
-
-        self.conveyor_type = conveyor_type
-        self.conveyor_type_letter = conveyor_types_dict[conveyor_type][0]
-        self.conveyor_type_short = conveyor_types_dict[conveyor_type][1]
-    
-        self.line = line
+    def __init__(self):
+        pass 
 
 
     def bag_speed(self):
@@ -113,5 +107,5 @@ class WMIndirectAnalog:
                 print(e)                     
 
 if __name__ == "__main__":
-    wm = WMIndirectAnalog("Distribution", 'A')
+    wm = WMIndirectAnalog()
     wm.create_csv()                 
