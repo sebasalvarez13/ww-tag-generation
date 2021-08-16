@@ -1,0 +1,2 @@
+:IOAccess,Application,Topic,AdviseActive,DDEProtocol,SecApplication,SecTopic,SecAdviseActive,SecDDEProtocol,FailoverExpression,FailoverDeadband,DFOFlag,FBDFlag,FailbackDeadband,:MemoryDisc
+,ABCIP,HC,Yes,No,,,,,,,,,,HC
